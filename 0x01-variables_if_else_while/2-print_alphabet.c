@@ -1,9 +1,8 @@
 #include <stdio.h>
 /**
  * main - Entry point
- * description - Write a program that
- * followed by a new line.
- * return (0)
+ * description - To print all alphabets,.
+ * Return: 0
 */
 int main(void)
 {
