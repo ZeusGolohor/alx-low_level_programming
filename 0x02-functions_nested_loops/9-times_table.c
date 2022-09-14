@@ -5,21 +5,18 @@
  */
 void times_table(void)
 {
-	/** varable declarations */	
+	/**
+	 * varable declarations
+	 */
 	int a = 0;
 	int b, rep;
-	
-	/* while loop to make
-	 * sure it is a 9 times 
-	 * table 
-	 */
+
 	while (a <= 9)
 	{
-		/** variable declaration */
-		b = 0;
-		/** while loop to
-		 *  set up the columns
+		/**
+		 * variable declaration
 		*/
+		b = 0;
 		while (b <= 9)
 		{
 			rep = a * b;
