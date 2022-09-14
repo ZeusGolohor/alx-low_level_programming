@@ -1,15 +1,17 @@
+#include <ctype.h>
 #include "main.h"
 /**
  * _islower - to check for
  * lower case alphabets
+ * Description: character passed once
+ * the function is called.
+ * @c: First operand
  * Return: Always 0.
  */
 int _islower(int c)
 {
-	if (c > 'a' && c < 'z')
-	{
+	if (islower(c))
 		return (1);
-	} else {
+	else
 		return (0);
-	}
 }
