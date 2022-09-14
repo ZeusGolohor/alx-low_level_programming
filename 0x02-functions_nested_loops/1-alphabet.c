@@ -1,11 +1,19 @@
+#include <stdio.h>
 #include "main.h"
 /**
- * main - entry point
+ * print_alphabet - To print
+ * all alphabets in lower case
  * return: always 0
 */
 
-int main(void)
+void print_alphabet(void)
 {
-	print_alphabet();
-	return (0);
+	char alpha = 'a';
+
+	while (alpha <= 'z')
+	{
+		putchar(alpha);
+		alpha++;
+	}
+	putchar('\n');
 }
