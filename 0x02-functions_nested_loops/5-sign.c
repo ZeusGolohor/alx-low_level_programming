@@ -1,6 +1,7 @@
 #include "main.h"
 /**
- * print_sign - To print a sign
+ * print_sign - To print a sign.
+ * @n: First operand.
  * Return: Always 0
  */
 int print_sign(int n)
