@@ -1,17 +1,16 @@
 #include "main.h"
 /**
- * more_numbers - Numbers from
- * 0 to 14 * 10
- * Return: Always void
+ * more_numbers - 0 to 14 * 10
+ * Rerurn: Always 0
  */
 void more_numbers(void)
 {
 	int i;
+	char n, c;
 
-	for (i = 0; i <= 10; i++)
+	i = 0;
+	while (i < 10)
 	{
-		char n, c;
-
 		for (n = 0; n <= 14; n++)
 		{
 			c = n;
@@ -20,8 +19,9 @@ void more_numbers(void)
 				_putchar('1');
 				c = n % 10;
 			}
-			_putchar(c + '0');
+			_putchar('0' + c);
 		}
 		_putchar('\n');
+		i++;
 	}
 }
