@@ -10,11 +10,11 @@ int main(void)
 	number = 1;
 	while (number <= 100)
 	{
-		if ((number % 3) == 0 && (number % 5) == 0)
+		if (number % 3 == 0 && number % 5 == 0)
 			printf("FizzBuzz");
-		else if ((number % 5) == 0)
-		       printf("Buzz");
-		else if ((number % 3) == 0)
+		else if (number % 5 == 0)
+			printf("Buzz");
+		else if (number % 3 == 0)
 			printf("Fizz");
 		else
 			printf("%d", number);
