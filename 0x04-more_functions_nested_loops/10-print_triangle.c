@@ -1,9 +1,8 @@
 #include "main.h"
-#include <stdio.h>
 /**
  * print_triangle - Entry point.
- * @size: Firat operand
- * Retuen: Always an int
+ * @size: First operand
+ * Return: Always an int
  */
 void print_triangle(int size)
 {
