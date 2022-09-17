@@ -1,6 +1,5 @@
 #include "main.h"
 /**
- * main - Entry point.
  * print_number - Used to
  * print numbers.
  * @n: First operand.
