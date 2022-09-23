@@ -16,8 +16,6 @@ char *cap_string(char *s)
 
 	for (i = 0; s[i] != '\0'; i++)
 	{
-		if (s[i] == 9)
-			s[i] = 32;
 		switch (s[i])
 		{
 			case 32: /** space */
