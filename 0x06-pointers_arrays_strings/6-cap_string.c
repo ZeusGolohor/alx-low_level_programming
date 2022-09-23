@@ -20,6 +20,9 @@ char *cap_string(char *s)
 		{
 			case 32: /** space */
 			case 9: /** tab */
+				s[i] = ' ';
+				s[i + 1] = toupper(s[i + 1]);
+				break;
 			case 10: /** new line */
 			case 44: /** ',' */
 			case 59: /** ';' */
