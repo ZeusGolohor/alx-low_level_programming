@@ -1,5 +1,4 @@
 #include "main.h"
-#include <string.h>
 
 /**
  * _memset - used to fill memory
@@ -12,6 +11,17 @@
 
 char *_memset(char *s, char b, unsigned int n)
 {
-	memset(s ,b ,n);
+	unsigned int i;
+
+	i = 0;
+	while(i < n)
+	{
+		/**
+		 * reseting the values
+		 * in the memory
+		 */
+		s[i] = b;
+		i++;
+	}
 	return (s);
 }
