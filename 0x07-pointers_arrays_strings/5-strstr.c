@@ -11,9 +11,9 @@ char *_strstr(char *haystack, char *needle)
 {
 	int i, x;
 
-	for (i = 0; *(needle + i) != '\0'; i++)
+	for (i = 0; *(needle + i) > '\0'; i++)
 	{
-		for (x = 0; *(haystack + x) != '\0'; x++)
+		for (x = 0; *(haystack + x) > '\0'; x++)
 		{
 			if (*(needle + i) == *(haystack + x))
 			{
