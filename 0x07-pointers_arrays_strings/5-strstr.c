@@ -6,6 +6,7 @@
  * substring
  * @haystack: first operand.
  * @needle: second operand.
+ * Return: char *
  */
 
 char *_strstr(char *haystack, char *needle)
