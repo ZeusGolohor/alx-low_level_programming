@@ -6,4 +6,7 @@
   * Return: always an int
   */
 
-int _isupper(int c);
+int _isupper(int c)
+{
+	return (c >= 65 && c <= 90);
+}
