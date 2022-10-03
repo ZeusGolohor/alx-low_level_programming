@@ -3,7 +3,8 @@
 /**
   * _strstr - _strstr
   * @haystack: first operand.
-  * @accept: second operand.
+  * @needle: second operand.
+  * Return: char.
   */
 
 char *_strstr(char *haystack, char *needle)
