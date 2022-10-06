@@ -14,10 +14,14 @@ char *str_concat(char *s1, char *s2)
 	char *str;
 	unsigned int len_s1 = 0, len_s2 = 0, len_total, i = 0, x = 0;
 
-	if (s1 == NULL)
-		s1 = '\0';
-	if (s2 == NULL)
-		s2 = '\0';
+	if (s1 == NULL || s2 == NULL)
+	{
+		str = malloc(sizeof(char) * 1);
+		if (str != NULL)
+			*(str + 0) = '\0';
+		else
+			return (NULL);
+	}
 	while (*(s1 + len_s1) != '\0')
 		len_s1++;
 	while (*(s2 + len_s2) != '\0')
@@ -50,32 +54,19 @@ char *str_concat(char *s1, char *s2)
 void strasn(char *s1, char *s2, char *str, unsigned int len_s1, unsigned int
 		len_s2, unsigned int len_total, unsigned int i, unsigned int x)
 {
-	if (*(s1 + 0) != '\0')
+	while (i < len_s1)
 	{
-		while (i < len_s1)
-		{
-			*(str + i) = *(s1 + i);
-			i++;
-		}
+		*(str + i) = *(s1 + i);
+		i++;
 	}
-	if (len_s2 == 0)
-	{
-		x = 0;
-	}
-	else
-	{
-		x = len_total - len_s2;
-	}
+	x = len_total - len_s2;
 	i = 0;
-	if (*(s2 + 0) != '\0')
-	{
-		while (x < len_total)
+	while (x < len_total)
 
-		{
-			*(str + x) = *(s2 + i);
-			x++;
-			i++;
-		}
+	{
+		*(str + x) = *(s2 + i);
+		x++;
+		i++;
 	}
 	*(str + x) = '\0';
 }
