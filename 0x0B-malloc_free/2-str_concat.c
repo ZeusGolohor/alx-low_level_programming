@@ -50,19 +50,25 @@ char *str_concat(char *s1, char *s2)
 void strasn(char *s1, char *s2, char *str, unsigned int len_s1, unsigned int
 		len_s2, unsigned int len_total, unsigned int i, unsigned int x)
 {
-	while (i < len_s1)
+	if (*(s1 + 0) != '\0')
 	{
-		*(str + i) = *(s1 + i);
-		i++;
+		while (i < len_s1)
+		{
+			*(str + i) = *(s1 + i);
+			i++;
+		}
 	}
 	x = len_total - len_s2;
 	i = 0;
-	while (x < len_total)
-
+	if (*(s2 + 0) != '\0')
 	{
-		*(str + x) = *(s2 + i);
-		x++;
-		i++;
+		while (x < len_total)
+
+		{
+			*(str + x) = *(s2 + i);
+			x++;
+			i++;
+		}
 	}
 	*(str + x) = '\0';
 }
