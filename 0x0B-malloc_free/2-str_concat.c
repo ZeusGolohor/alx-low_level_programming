@@ -15,9 +15,9 @@ char *str_concat(char *s1, char *s2)
 	unsigned int len_s1 = 0, len_s2 = 0, len_total, i = 0, x = 0;
 
 	if (s1 == NULL)
-		*(s1 + 0) = '\0';
+		s1 = '\0';
 	if (s2 == NULL)
-		*(s2 + 0) = '\0';
+		s2 = '\0';
 	while (*(s1 + len_s1) != '\0')
 		len_s1++;
 	while (*(s2 + len_s2) != '\0')
@@ -58,7 +58,14 @@ void strasn(char *s1, char *s2, char *str, unsigned int len_s1, unsigned int
 			i++;
 		}
 	}
-	x = len_total - len_s2;
+	if (len_s2 == 0)
+	{
+		x = 0;
+	}
+	else
+	{
+		x = len_total - len_s2;
+	}
 	i = 0;
 	if (*(s2 + 0) != '\0')
 	{
