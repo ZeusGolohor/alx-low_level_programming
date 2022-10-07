@@ -11,8 +11,8 @@
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
 	unsigned int i, s = nmemb * size;
-	void *m = malloc(s);
-	char *array = m;
+	void *array = malloc(s);
+	char *a = array;
 
 	if (nmemb == 0 || size == 0)
 		return (NULL);
@@ -21,8 +21,8 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 	i = 0;
 	while (i < s)
 	{
-		*(array + i) = 0;
+		*(a + i) = 0;
 		i++;
 	}
-	return (m);
+	return (array);
 }
