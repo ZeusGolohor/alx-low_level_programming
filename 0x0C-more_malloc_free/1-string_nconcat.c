@@ -52,10 +52,12 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	if (s1 != NULL)
 		len_s1 = strlen(s1);
 	if (s2 != NULL)
+	{
 		if (n >= strlen(s2))
 			len_s2 = strlen(s2);
 		else
 			len_s2 = n;
+	}
 	len_total = len_s1 + len_s2;
 	str = malloc(sizeof(char) * (len_total + 1));
 	if (str == NULL)
