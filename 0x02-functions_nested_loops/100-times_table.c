@@ -10,28 +10,30 @@ void print_times_table(int n)
 {
 	int i, x, y;
 
-	if (n > 15 || n < 0)
-		return;
-	i = 0;
-	while (i <= n)
+	if (n < 15 && n > 0)
 	{
-		x = 0;
-		while (x <= n)
+		i = 0;
+		while (i <= n)
 		{
-			y = i * x;
-			printf("%d", y);
-			if (x != n)
+			x = 0;
+			while (x <= n)
 			{
-				if (y >= 0 && y  <= 9)
-					printf("%s", ",   ");
-				else if (y > 9 && y <= 99)
-					printf("%s", ",  ");
-				else if (y > 99 && y <= 999)
-					printf("%s", ", ");
+				y = i * x;
+				printf("%d", y);
+				if (x != n)
+				{
+					if (y >= 0 && y  <= 9)
+						printf("%s", ",   ");
+					else if (y > 9 && y <= 99)
+						printf("%s", ",  ");
+					else if (y > 99 && y <= 999)
+						printf("%s", ", ");
+				}
+				x++;
 			}
-			x++;
+			i++;
+			if (i % n || i == n)
+				_putchar('\n');
 		}
-		i++;
-		_putchar('\n');
 	}
 }
