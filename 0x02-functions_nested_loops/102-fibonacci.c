@@ -7,17 +7,18 @@
 
 int main(void)
 {
-	unsigned int i = 0, x = 1, y = 2, n = 0;
+	unsigned int i = 0, x = 0, y = 1, max = 50, n;
 
 	printf("%d, ", x);
 	printf("%d, ", y);
-	while (i < 10)
+	while (i <= max)
 	{
-		n = 0;
-		printf("%d, ", (x + y));
+		printf("%d",(x + y));
 		n = x;
 		x = y;
-		y = n + y;
+		y = n + x;
+		if (i != max)
+			printf("%s", ", ");
 		i++;
 	}
 	printf("%s", "\n");
