@@ -13,7 +13,7 @@ int main(void)
 	printf("%d, ", y);
 	while (i <= max)
 	{
-		printf("%d",(x + y));
+		printf("%d", (x + y));
 		n = x;
 		x = y;
 		y = n + x;
