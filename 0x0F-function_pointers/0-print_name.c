@@ -10,6 +10,6 @@
 
 void print_name(char *name, void (*f)(char *))
 {
-	if (strlen(name) > 0)
+	if (name != NULL || f != NULL)
 		f(name);
 }
