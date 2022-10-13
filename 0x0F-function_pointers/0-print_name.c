@@ -9,5 +9,6 @@
 
 void print_name(char *name, void (*f)(char *))
 {
-	f(name);
+	if (*(name + 0) != '\0' || *(name + 0) != 0)
+		f(name);
 }
