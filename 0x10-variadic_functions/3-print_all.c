@@ -1,7 +1,6 @@
 #include "variadic_functions.h"
 #include <string.h>
 #include <stdio.h>
-#include <stdarg.h>
 
 /**
   * print_all - to print all formats
@@ -22,26 +21,55 @@ void print_all(const char * const format, ...)
 	{
 		while (i < len)
 		{
-			switch (*(format + i))
-			{
-				case 'c':
-					printf("%c", va_arg(list, int));
-					break;
-				case 'i':
-					printf("%i", va_arg(list, int));
-					break;
-				case 'f':
-					printf("%f", va_arg(list, double));
-					break;
-				case 's':
-					printf("%s", va_arg(list, char *));
-					break;
-			}
-			if ((i + 1) < len)
-				printf(", ");
+			sw(format, i, len, list);
 			i++;
 		}
 	}
 	printf("\n");
 	va_end(list);
+}
+
+/**
+  * sw - switch
+  * @format: first operand
+  * @i: second operand
+  * @len: third operand
+  * @list: forth operand
+  * Return: void.
+  */
+
+void sw(const char * const format, unsigned int i,
+		unsigned int len, va_list list)
+{
+	switch (*(format + i))
+	{
+		case 'c':
+			printf("%c", va_arg(list, int));
+			iff(i, len);
+			break;
+		case 'i':
+			printf("%i", va_arg(list, int));
+			iff(i, len);
+			break;
+		case 'f':
+			printf("%f", va_arg(list, double));
+			iff(i, len);
+			break;
+		case 's':
+			printf("%s", va_arg(list, char *));
+			iff(i, len);
+			break;
+	}
+}
+
+/**
+  * iff - if statemeent check
+  * @i: first operand
+  * @len: second operand
+  * Return: void
+  */
+void iff(unsigned int i, unsigned int len)
+{
+	if ((i + 1) < len)
+		printf(", ");
 }
