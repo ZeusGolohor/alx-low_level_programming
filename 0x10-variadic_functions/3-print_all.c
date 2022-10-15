@@ -59,7 +59,7 @@ void sw(const char * const format, unsigned int i,
 			break;
 		case 's':
 			str = va_arg(list, char *);
-			((str == NULL)? printf("(nil)"): printf("%s", str));
+			((str == NULL) ? printf("(nil)") : printf("%s", str));
 			iff(i, len);
 			break;
 	}
