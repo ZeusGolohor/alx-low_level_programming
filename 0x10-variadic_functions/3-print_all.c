@@ -41,6 +41,8 @@ void print_all(const char * const format, ...)
 void sw(const char * const format, unsigned int i,
 		unsigned int len, va_list list)
 {
+	char *str;
+
 	switch (*(format + i))
 	{
 		case 'c':
@@ -56,7 +58,14 @@ void sw(const char * const format, unsigned int i,
 			iff(i, len);
 			break;
 		case 's':
-			printf("%s", va_arg(list, char *));
+			str = va_arg(list, char *);
+			if (str == NULL)
+			{
+				printf("(nil)");
+				iff(i, len);
+				break;
+			}
+			printf("%s", str);
 			iff(i, len);
 			break;
 	}
