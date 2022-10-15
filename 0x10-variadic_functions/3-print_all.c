@@ -14,11 +14,11 @@ void print_all(const char * const format, ...)
 	unsigned int i;
 	va_list list;
 
-	len = strlen(format);
 	va_start(list, format);
 	i = 0;
-	if (len > 0)
+	if (format != NULL)
 	{
+		len = strlen(format);
 		while (i < len)
 		{
 			sw(format, i, len, list);
