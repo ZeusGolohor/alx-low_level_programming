@@ -16,7 +16,13 @@ int main(int argc, char *argv[])
 		arg1 = atoi(argv[1]);
 		arg2 = atoi(argv[3]);
 		if ((*get_op_func(argv[2])) != NULL)
-			printf("%d", (*get_op_func(argv[2]))(arg1, arg2));
+			if (strlen(argv[2]) == 1)
+				printf("%d", (*get_op_func(argv[2]))(arg1, arg2));
+			else
+			{
+				printf("Error\n");
+				exit(99);
+			}
 		else
 		{
 			printf("Error\n");
