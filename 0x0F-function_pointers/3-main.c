@@ -4,7 +4,7 @@
   * main - Entry point
   * @argc: first operand.
   * @argv: second operand.
-  * Return : int;
+  * Return: int;
   */
 
 int main(int argc, char *argv[])
@@ -15,8 +15,19 @@ int main(int argc, char *argv[])
 	{
 		arg1 = atoi(argv[1]);
 		arg2 = atoi(argv[3]);
-		printf("%d", (*get_op_func(argv[2]))(arg1, arg2));
+		if ((*get_op_func(argv[2])) != NULL)
+			printf("%d", (*get_op_func(argv[2]))(arg1, arg2));
+		else
+		{
+			printf("Error\n");
+			exit(99);
+		}
+		printf("\n");
 	}
-	printf("\n");
+	else
+	{
+		printf("Error\n");
+		exit(98);
+	}
 	return (0);
 }
