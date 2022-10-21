@@ -9,6 +9,7 @@
 size_t print_list(const list_t *h)
 {
 	size_t i;
+	long int x;
 	char *s;
 
 	i = 0;
@@ -21,7 +22,10 @@ size_t print_list(const list_t *h)
 		else
 		{
 			s = h->str;
-			printf("[%ld] %s\n", _strlen(s), (s));
+			x = 0;
+			while (s[x] != '\0')
+				x++;
+			printf("[%ld] %s\n", x, (s));
 		}
 		i++;
 		h = h->next;
