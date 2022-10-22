@@ -6,7 +6,7 @@
   * Return: unsigned int.
   */
 
-long int _strlen(char *str)
+long int _strlen(const char *str)
 {
 	unsigned int i;
 
