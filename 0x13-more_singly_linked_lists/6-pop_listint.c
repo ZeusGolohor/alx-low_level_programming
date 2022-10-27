@@ -14,6 +14,8 @@ int pop_listint(listint_t **head)
 
 	if (head == NULL)
 	{
+		current = *head;
+		free(current);
 		return (i);
 	}
 	else
