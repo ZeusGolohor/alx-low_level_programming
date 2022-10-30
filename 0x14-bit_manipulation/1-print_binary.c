@@ -25,11 +25,6 @@ void print_binary(unsigned long int n)
 		}
 		printf("%d", 1);
 		index = (index - 2);
-		/**printf("%d, %d\n", hi_pow, index);
-		if (index >= 0)
-			printf("yes");
-		else
-			printf("no");*/
 		while (index >= 0)
 		{
 			if ((hi_pow + _pow(2, index)) <= n)
