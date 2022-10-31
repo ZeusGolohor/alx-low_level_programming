@@ -12,29 +12,29 @@ void print_binary(unsigned long int n)
 	int index;
 
 	if (n == 0)
-		printf("%d", 0);
+		_putchar('0');
 	else if (n == 1)
-		printf("%d", 1);
+		_putchar('1');
 	if (n > 1)
 	{
 		index = 0;
-		while ((_pow(2, index)) < n)
+		while ((_pow(2, index)) < n || (_pow(2, index)) == n)
 		{
 			hi_pow = (_pow(2, index));
 			index++;
 		}
-		printf("%d", 1);
+		_putchar('1');
 		index = (index - 2);
 		while (index >= 0)
 		{
 			if ((hi_pow + _pow(2, index)) <= n)
 			{
 				hi_pow = (hi_pow + _pow(2, index));
-				printf("%d", 1);
+				_putchar('1');
 			}
 			else
 			{
-				printf("%d", 0);
+				_putchar('0');
 			}
 			index = (index - 1);
 		}
