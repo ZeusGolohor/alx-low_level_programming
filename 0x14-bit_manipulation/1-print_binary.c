@@ -9,13 +9,13 @@
 void print_binary(unsigned long int n)
 {
 	unsigned int hi_pow = 0;
-	int index;
+	long index;
 
 	if (n == 0)
 		_putchar('0');
 	else if (n == 1)
 		_putchar('1');
-	if (n > 1)
+	else if (n > 1)
 	{
 		index = 0;
 		while ((_pow(2, index)) < n || (_pow(2, index)) == n)
@@ -25,7 +25,7 @@ void print_binary(unsigned long int n)
 		}
 		_putchar('1');
 		index = (index - 2);
-		while (index >= 0)
+		while (index > -1)
 		{
 			if ((hi_pow + _pow(2, index)) <= n)
 			{
