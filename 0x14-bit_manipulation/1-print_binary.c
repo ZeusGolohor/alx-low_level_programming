@@ -1,15 +1,14 @@
 #include "main.h"
 
 /**
-  * print_binary - Used to convert decimal to binary.
+  * print_binary - Used to convert a decimal to binary.
   * @n: unsigned long int
   * Return: void.
   */
 
 void print_binary(unsigned long int n)
 {
-	unsigned int hi_pow = 0;
-	long index;
+	unsigned long int counter = 1, *count = &counter, slot = 0;
 
 	if (n == 0)
 		_putchar('0');
@@ -17,48 +16,57 @@ void print_binary(unsigned long int n)
 		_putchar('1');
 	else if (n > 1)
 	{
-		index = 0;
-		while ((_pow(2, index)) < n || (_pow(2, index)) == n)
+		get_highest_index(n, count);
+		while (*(count) > 1)
 		{
-			hi_pow = (_pow(2, index));
-			index++;
-		}
-		_putchar('1');
-		index = (index - 2);
-		while (index > -1)
-		{
-			if ((hi_pow + _pow(2, index)) <= n)
+			if ((slot + _pow_ulong(2, (*(count) - 2))) <= n)
 			{
-				hi_pow = (hi_pow + _pow(2, index));
 				_putchar('1');
+				slot = ((slot + _pow_ulong(2, (*(count) - 2))));
 			}
 			else
 			{
 				_putchar('0');
 			}
-			index = (index - 1);
+			*count = (*(count) - 1);
 		}
 	}
 }
 
 /**
-  * _pow - Multiplies a number by it's self n times.
-  * @x: Unsigned int, the number.
-  * @p: Unsigned int, the number of times.
-  * Return: Unsigned int.
+  * get_highest_index - Used to get the highest index if a decimal in binary.
+  * @n: unsigned long int
+  * @count: ulong int*
+  * Return: void.
   */
 
-unsigned int _pow(unsigned int x, unsigned int p)
+void get_highest_index(unsigned long int n, unsigned long int *count)
 {
-	unsigned int n = 1, i;
+	if (n > 0)
+	{
+		*count = (*(count) + 1);
+		get_highest_index((n >> 1), count);
+	}
+}
 
-	if (x == 0)
+/**
+  * _pow_ulong - Used to the result of a number raise to power of x.
+  * @y: ulong int
+  * @x: ulong int
+  * Return: ulong int.
+  */
+
+unsigned long int _pow_ulong(unsigned long int y, unsigned long int x)
+{
+	unsigned long int n = 1, i;
+
+	if (y == 0)
 		return (0);
 
 	i = 0;
-	while (i < p)
+	while (i < x)
 	{
-		n *= x;
+		n *= y;
 		i++;
 	}
 	return (n);
