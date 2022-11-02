@@ -17,20 +17,22 @@ int get_bit(unsigned long int n, unsigned int index)
 	if (index > (*(count) - 1))
 		return (-1);
 
-	while (*(count) > 1)
+	/**printf("count: %u_", (*count - 1));*/
+	while (*count > 1)
 	{
-		if ((slot + _pow_ulong_unit(n, (*(count) - 1))) <= n)
+		/**printf("%lu_", _pow_ulong_unit(2, (*count - 2)));*/
+		if (slot + _pow_ulong_unit(2, (*count - 2)) <= n)
 		{
-			if (index == (*(count) - 1))
+			slot = (slot + _pow_ulong_unit(2, (*count - 2)));
+			if (index == (*count - 2))
 				bit = 1;
-			slot = (slot + _pow_ulong_unit(n, (*(count) - 1)));
 		}
 		else
 		{
-			if (index == (*(count) - 1))
+			if (index == (*count - 2))
 				bit = 0;
 		}
-		*count = (*(count) - 1);
+		*count = (*count - 1);
 	}
 	return (bit);
 }
