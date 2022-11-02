@@ -15,7 +15,7 @@ int get_bit(unsigned long int n, unsigned int index)
 
 	get_highest_index_ulong_uint(n, count);
 	if (index > (*(count) - 1))
-		return (-1);
+		return (0);
 
 	/**printf("count: %u_", (*count - 1));*/
 	while (*count > 1)
