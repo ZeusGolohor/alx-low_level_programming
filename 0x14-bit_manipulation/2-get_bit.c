@@ -14,16 +14,13 @@ int get_bit(unsigned long int n, unsigned int index)
 	int bit = 0;
 
 	get_highest_index_ulong_uint(n, count);
-	if (index > (*(count) - 2))
-		return (-1);
-
 	/**printf("count: %u_", (*count - 1));*/
 	while (*count > 1)
 	{
-		/**printf("%lu_", _pow_ulong_unit(2, (*count - 2)));*/
-		if (slot + _pow_ulong_unit(2, (*count - 2)) <= n)
+		/**printf("%lu_", _pow_ulong_uint(2, (*count - 2)));*/
+		if (slot + _pow_ulong_uint(2, (*count - 2)) <= n)
 		{
-			slot = (slot + _pow_ulong_unit(2, (*count - 2)));
+			slot = (slot + _pow_ulong_uint(2, (*count - 2)));
 			if (index == (*count - 2))
 				bit = 1;
 		}
@@ -34,6 +31,9 @@ int get_bit(unsigned long int n, unsigned int index)
 		}
 		*count = (*count - 1);
 	}
+	if (index > (*count - 2))
+		return (-1);
+
 	return (bit);
 }
 
@@ -54,14 +54,14 @@ void get_highest_index_ulong_uint(unsigned long int n, unsigned int *count)
 }
 
 /**
-  * _pow_ulong_unit - Used to get the result of a number raise to the power of
+  * _pow_ulong_uint - Used to get the result of a number raise to the power of
   * x.
   * @y: unsigned long int.
   * @x: unit.
   * Return: ulong.
   */
 
-unsigned long int _pow_ulong_unit(unsigned long int y, unsigned int x)
+unsigned long int _pow_ulong_uint(unsigned long int y, unsigned int x)
 {
 	unsigned long int n = 1;
 	unsigned int i;

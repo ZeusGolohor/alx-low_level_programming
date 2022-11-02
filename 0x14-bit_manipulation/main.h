@@ -8,7 +8,7 @@ char *_strdup(const char *s);
 unsigned int bin_check(char s);
 unsigned int _pow(unsigned int, unsigned int);
 unsigned long int _pow_ulong(unsigned long int, unsigned long int);
-unsigned long int _pow_ulong_unit(unsigned long int, unsigned int);
+unsigned long int _pow_ulong_uint(unsigned long int, unsigned int);
 void print_binary(unsigned long int n);
 void get_highest_index(unsigned long int, unsigned long int *);
 int _putchar(char c);
