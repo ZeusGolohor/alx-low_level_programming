@@ -11,24 +11,28 @@ int get_bit(unsigned long int n, unsigned int index)
 {
 	unsigned int counter = 1, *count = &counter;
 	unsigned long int slot = 0;
+	int bit = 0;
 
 	get_highest_index_ulong_uint(n, count);
-	while (*(count) >= 1)
+	if (index > (*(count) - 1))
+		return (-1);
+
+	while (*(count) > 1)
 	{
 		if ((slot + _pow_ulong_unit(n, (*(count) - 1))) <= n)
 		{
 			if (index == (*(count) - 1))
-				return (1);
+				bit = 1;
 			slot = (slot + _pow_ulong_unit(n, (*(count) - 1)));
 		}
 		else
 		{
 			if (index == (*(count) - 1))
-				return (0);
+				bit = 0;
 		}
 		*count = (*(count) - 1);
 	}
-	return (-1);
+	return (bit);
 }
 
 /**
