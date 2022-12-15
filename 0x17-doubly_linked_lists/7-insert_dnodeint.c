@@ -22,7 +22,7 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 		newnode->n = n;
 		newnode->next = NULL;
 		newnode->prev = NULL;
-		temp = newnode;
+		*h = newnode;
 		return (newnode);
 	}
 	while (temp != NULL)
