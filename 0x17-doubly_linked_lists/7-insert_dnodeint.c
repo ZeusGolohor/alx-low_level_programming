@@ -10,7 +10,7 @@
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
 	dlistint_t *newnode, *temp = *h;
-	unsigned int i = 0, x = 0, list_len = _getlistlen(*h);;
+	unsigned int i = 0, x = 0, list_len = _getlistlen(*h);
 
 	if (idx < i || idx > list_len)
 		return (NULL);
@@ -52,7 +52,7 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
   */
 unsigned int _getlistlen(dlistint_t *head)
 {
-	unsigned i = 0;
+	unsigned int i = 0;
 
 	while (head != NULL)
 	{
