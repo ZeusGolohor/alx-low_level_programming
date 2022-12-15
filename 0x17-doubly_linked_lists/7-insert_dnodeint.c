@@ -9,46 +9,34 @@
   */
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
-	dlistint_t *newnode, *temp = *h;
-	unsigned int i = 0;
+	dlistint_t *newnode, *temp;
+	unsigned int i = 0, list_len;
 
-	if (idx < i)
+	if (idx < i || idx > _getlistlen(*h))
 		return (NULL);
 	newnode = malloc(sizeof(dlistint_t));
 	if (newnode == NULL)
 		return (NULL);
-	if (temp == NULL)
+	list_len = _getlistlen(*h);
+	temp = *h;
+	printf("list_len: %d, idx: %d, n: %d\n", list_len, idx, n);
+	return (temp);
+
+}
+
+/**
+  * _getlistlen - Used to get the length of a linked list.
+  * @head: address to the first node.
+  * Return: unsigned int.
+  */
+unsigned int _getlistlen(dlistint_t *head)
+{
+	unsigned i = 0;
+
+	while (head != NULL)
 	{
-		newnode->n = n;
-		newnode->prev = NULL;
-		newnode->next = NULL;
-		temp = newnode;
-		return (temp);
+		i++;
+		head = head->next;
 	}
-	if (idx == i)
-	{
-		newnode->n = n;
-		newnode->prev = NULL;
-		newnode->next = temp;
-		temp->prev = newnode;
-	}
-	else
-	{
-		i = 0;
-		while (temp != NULL)
-		{
-			if (i > idx)
-				return (NULL);
-			if (i == idx)
-				break;
-			i++;
-			temp = temp->next;
-		}
-		newnode->n = n;
-		newnode->next = temp;
-		newnode->prev = temp->prev;
-		temp->prev->next = newnode;
-		temp->prev = newnode;
-	}
-	return (newnode);
+	return (i);
 }
