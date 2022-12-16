@@ -27,4 +27,6 @@ dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index);
 int sum_dlistint(dlistint_t *head);
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n);
 unsigned int _getlistlen(dlistint_t*);
+void node_shift(unsigned int, unsigned int, dlistint_t *, dlistint_t *,
+dlistint_t **, unsigned int);
 #endif

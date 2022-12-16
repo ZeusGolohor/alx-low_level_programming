@@ -32,29 +32,10 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 		i++;
 		temp = temp->next;
 	}
-	/** inserting at the end */
-	if (idx == list_len)
-	{
-		newnode->next = NULL;
-		newnode->prev = temp;
-		temp->next = newnode;
-	}
-	/** inserting at the beggining */
-	else if (idx == x)
-	{
-		newnode->prev = NULL;
-		newnode->next = temp;
-		temp->prev = newnode;
-		*h = newnode;
-	}
-	/** inserting at the middle */
-	else
-	{
-		newnode->next = temp;
-		newnode->prev = temp->prev;
-		temp->prev->next = newnode;
-		temp->prev = newnode;
-	}
+	/**
+	  * newnode insertion
+	  */
+	node_shift(idx, list_len, newnode, temp, h, x);
 	return (newnode);
 }
 
@@ -73,4 +54,49 @@ unsigned int _getlistlen(dlistint_t *head)
 		head = head->next;
 	}
 	return (i);
+}
+
+/**
+  * node_shift - Used to add new node to a specific position
+  * in a Dlinked list.
+  * @idx: unsigned int.
+  * @list_len: unsigned int.
+  * @newnode: dlistint_t.
+  * @temp: dlistint_t.
+  * @h: dlistint_t.
+  * @x: unsigned int.
+  * Return: void.
+  */
+void node_shift(unsigned int idx, unsigned int list_len, dlistint_t *newnode,
+dlistint_t *temp, dlistint_t **h, unsigned int x)
+{
+	/**
+	  * inserting at the end
+	  */
+	if (idx == list_len)
+	{
+		newnode->next = NULL;
+		newnode->prev = temp;
+		temp->next = newnode;
+	}
+	/**
+	  * inserting at the beggining
+	  */
+	else if (idx == x)
+	{
+		newnode->prev = NULL;
+		newnode->next = temp;
+		temp->prev = newnode;
+		*h = newnode;
+	}
+	/**
+	  * inserting at the middle
+	  */
+	else
+	{
+		newnode->next = temp;
+		newnode->prev = temp->prev;
+		temp->prev->next = newnode;
+		temp->prev = newnode;
+	}
 }
