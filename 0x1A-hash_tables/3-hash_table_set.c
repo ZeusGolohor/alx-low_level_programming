@@ -34,7 +34,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 			{
 				temp->value = realloc(temp->value, (sizeof(value) + 1));
 				strcpy(temp->value, value);
-				return (1);
+				break;
 			}
 			temp = temp->next;
 		}
