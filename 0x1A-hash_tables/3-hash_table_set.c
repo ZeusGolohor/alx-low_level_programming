@@ -38,13 +38,16 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 			}
 			temp = temp->next;
 		}
-		newnode = create_new_node(key, value);
-		if (newnode == NULL)
-			return (0);
-		strcpy(newnode->key, key);
-		strcpy(newnode->value, value);
-		newnode->next = ht->array[index];
-		ht->array[index] = newnode;
+		if (temp->next == NULL)
+		{
+			newnode = create_new_node(key, value);
+			if (newnode == NULL)
+				return (0);
+			strcpy(newnode->key, key);
+			strcpy(newnode->value, value);
+			newnode->next = ht->array[index];
+			ht->array[index] = newnode;
+		}
 	}
 	return (1);
 }
