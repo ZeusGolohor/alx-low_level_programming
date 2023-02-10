@@ -10,13 +10,13 @@
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index;
-	hash_node_t *prt_to_array, *newnode;
+	hash_node_t *newnode, *temp;
 
 	if (strlen(key) == 0)
 		return (0);
 	index = key_index((const unsigned char *)key, ht->size);
-	prt_to_array = ht->array[index];
-	if (prt_to_array == NULL)
+	temp = ht->array[index];
+	if (temp == NULL)
 	{
 		newnode = create_new_node(key, value);
 		if (newnode == NULL)
@@ -28,14 +28,30 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	}
 	else
 	{
-
+		while (temp->next != NULL)
+		{
+			if (strcmp(temp->key, key) == 0)
+			{
+				temp->value = realloc(temp->value, sizeof(strlen(value) + 1));
+				strcpy(temp->value, value);
+				return (1);
+			}
+			temp = temp->next;
+		}
+		newnode = create_new_node(key, value);
+		if (newnode == NULL)
+			return (0);
+		strcpy(newnode->key, key);
+		strcpy(newnode->value, value);
+		newnode->next = NULL;
+		temp->next = newnode;
 	}
-	
 	return (1);
 }
 
 /**
-  * create_new_node - Used to creare new node to be inserted into the hash table.
+  * create_new_node - Used to creare new node to
+  * be inserted into the hash table.
   * @key: const char *
   * @value: const char *
   * Return: hash_node_t *.
