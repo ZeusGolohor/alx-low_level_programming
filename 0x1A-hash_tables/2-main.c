@@ -13,7 +13,7 @@ int main(void)
     char *s;
     unsigned long int hash_table_array_size;
 
-    hash_table_array_size = 1024;
+    hash_table_array_size = 30;
     s = "cisfun";
     printf("%lu\n", hash_djb2((unsigned char *)s));
     printf("%lu\n", key_index((unsigned char *)s, hash_table_array_size));
@@ -21,6 +21,12 @@ int main(void)
     printf("%lu\n", hash_djb2((unsigned char *)s));
     printf("%lu\n", key_index((unsigned char *)s, hash_table_array_size));
     s = "98";
+    printf("%lu\n", hash_djb2((unsigned char *)s));
+    printf("%lu\n", key_index((unsigned char *)s, hash_table_array_size));  
+    s = "China";
+    printf("%lu\n", hash_djb2((unsigned char *)s));
+    printf("%lu\n", key_index((unsigned char *)s, hash_table_array_size));  
+    s = "Germany";
     printf("%lu\n", hash_djb2((unsigned char *)s));
     printf("%lu\n", key_index((unsigned char *)s, hash_table_array_size));  
     return (EXIT_SUCCESS);

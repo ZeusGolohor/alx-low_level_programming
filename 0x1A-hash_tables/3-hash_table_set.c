@@ -10,27 +10,48 @@
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index;
-	hash_node_t *prt_to_node, *newnode;
+	hash_node_t *prt_to_array, *newnode;
 
 	if (strlen(key) == 0)
 		return (0);
 	index = key_index((const unsigned char *)key, ht->size);
-	prt_to_node = ht->array[index];
-	if (prt_to_node != NULL)
+	prt_to_array = ht->array[index];
+	if (prt_to_array == NULL)
 	{
-		if (strcmp(prt_to_node->key, key))
-			strcpy(prt_to_node->value, value);
+		newnode = create_new_node(key, value);
+		if (newnode == NULL)
+			return (0);
+		strcpy(newnode->key, key);
+		strcpy(newnode->value, value);
+		newnode->next = NULL;
+		ht->array[index] = newnode;
 	}
 	else
 	{
-		newnode = malloc(sizeof(hash_node_t));
-		if (newnode == NULL)
-			return (0);
-		newnode->key = malloc((strlen(key) + 1));
-		newnode->value = malloc((strlen(value) + 1));
-		strcpy(newnode->key, key);
-		strcpy(newnode->value, value);
-		ht->array[index] = newnode;
+
 	}
+	
 	return (1);
+}
+
+/**
+  * create_new_node - Used to creare new node to be inserted into the hash table.
+  * @key: const char *
+  * @value: const char *
+  * Return: hash_node_t *.
+  */
+hash_node_t *create_new_node(const char *key, const char *value)
+{
+	hash_node_t *newnode;
+
+	newnode = malloc(sizeof(hash_node_t));
+	if (newnode == NULL)
+		return (NULL);
+	newnode->key = malloc(sizeof(strlen(key) + 1));
+	if (newnode->key == NULL)
+		return (NULL);
+	newnode->value = malloc(sizeof(strlen(value) + 1));
+	if (newnode->value == NULL)
+		return (NULL);
+	return (newnode);
 }
