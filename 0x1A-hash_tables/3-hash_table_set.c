@@ -9,7 +9,7 @@
   */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	unsigned long int index, found = 0;
+	unsigned long int index;
 	hash_node_t *newnode, *temp;
 
 	if (strlen(key) == 0)
@@ -32,23 +32,28 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		{
 			if (strcmp(temp->key, key) == 0)
 			{
-				found = 1;
+				temp->value = realloc(temp->value, strlen(value) + 1);
+				strcpy(temp->value, value);
 				break;
 			}
 		}
-		if (found == 1)
+		if (temp->next == NULL)
 		{
-			printf("found");
-		}
-		else
-		{
-			newnode = create_new_node(key, value);
-			if (newnode == NULL)
-				return (0);
-			strcpy(newnode->key, key);
-			strcpy(newnode->value, value);
-			newnode->next = ht->array[index];
-			ht->array[index] = newnode;
+			if (strcmp(temp->key, key) == 0)
+			{
+				temp->value = realloc(temp->value, strlen(value) + 1);
+				strcpy(temp->value, value);
+			}
+			else
+			{
+				newnode = create_new_node(key, value);
+				if (newnode == NULL)
+					return (0);
+				strcpy(newnode->key, key);
+				strcpy(newnode->value, value);
+				newnode->next = ht->array[index];
+				ht->array[index] = newnode;
+			}
 		}
 	}
 	return (1);
