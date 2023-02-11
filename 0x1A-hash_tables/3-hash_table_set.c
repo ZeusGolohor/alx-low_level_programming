@@ -27,6 +27,39 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		newnode->next = NULL;
 		ht->array[index] = newnode;
 	}
+	else if (ht->size == 1)
+	{
+		temp = ht->array[index];
+		while (temp->next != NULL)
+		{
+			if (strcmp(temp->key, key) == 0)
+			{
+				temp->value = realloc(temp->value, strlen(temp->value) + 1);
+				strcpy(temp->value, value);
+				break;
+			}
+			temp = temp->next;
+		}
+		if (temp->next == NULL)
+		{
+			if (strcmp(temp->key, key) == 0)
+			{
+				temp->value = realloc(temp->value, strlen(value) + 1);
+				strcpy(temp->value, value);
+			}
+			else
+			{
+				newnode = create_new_node(key, value);
+				if (newnode == NULL)
+					return (0);
+				strcpy(newnode->key, key);
+				strcpy(newnode->value, value);
+				newnode->next = ht->array[index];
+				ht->array[index] = newnode;
+			}
+		}
+		return (1);
+	}
 	else
 	{
 		temp = ht->array[index];
@@ -38,6 +71,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 				strcpy(temp->value, value);
 				break;
 			}
+			temp = temp->next;
 		}
 		if (temp->next == NULL)
 		{
