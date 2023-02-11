@@ -39,4 +39,5 @@ int hash_table_set(hash_table_t *, const char *, const char *);
 hash_node_t *create_new_node(const char *, const char *);
 int hash_table_loop_n_set(hash_table_t *, const char *, const char *,
 hash_node_t *, unsigned long int);
+char *hash_table_get(const hash_table_t *, const char *);
 #endif

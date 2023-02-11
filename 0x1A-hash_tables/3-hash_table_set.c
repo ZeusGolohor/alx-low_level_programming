@@ -77,7 +77,7 @@ hash_node_t *create_new_node(const char *key, const char *value)
 int hash_table_loop_n_set(hash_table_t *ht, const char *key, const char *value,
 hash_node_t *temp, unsigned long int index)
 {
-		hash_node_t *newnode;
+	hash_node_t *newnode;
 
 	while (temp->next != NULL)
 	{
