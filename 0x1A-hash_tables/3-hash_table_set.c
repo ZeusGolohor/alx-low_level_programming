@@ -30,67 +30,13 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	else if (ht->size == 1)
 	{
 		temp = ht->array[index];
-		while (temp->next != NULL)
-		{
-			if (strcmp(temp->key, key) == 0)
-			{
-				temp->value = realloc(temp->value, strlen(temp->value) + 1);
-				strcpy(temp->value, value);
-				break;
-			}
-			temp = temp->next;
-		}
-		if (temp->next == NULL)
-		{
-			if (strcmp(temp->key, key) == 0)
-			{
-				temp->value = realloc(temp->value, strlen(value) + 1);
-				strcpy(temp->value, value);
-			}
-			else
-			{
-				newnode = create_new_node(key, value);
-				if (newnode == NULL)
-					return (0);
-				strcpy(newnode->key, key);
-				strcpy(newnode->value, value);
-				newnode->next = ht->array[index];
-				ht->array[index] = newnode;
-			}
-		}
+		hash_table_loop_n_set(ht, key, value, temp, index);
 		return (1);
 	}
 	else
 	{
 		temp = ht->array[index];
-		while (temp->next != NULL)
-		{
-			if (strcmp(temp->key, key) == 0)
-			{
-				temp->value = realloc(temp->value, strlen(value) + 1);
-				strcpy(temp->value, value);
-				break;
-			}
-			temp = temp->next;
-		}
-		if (temp->next == NULL)
-		{
-			if (strcmp(temp->key, key) == 0)
-			{
-				temp->value = realloc(temp->value, strlen(value) + 1);
-				strcpy(temp->value, value);
-			}
-			else
-			{
-				newnode = create_new_node(key, value);
-				if (newnode == NULL)
-					return (0);
-				strcpy(newnode->key, key);
-				strcpy(newnode->value, value);
-				newnode->next = ht->array[index];
-				ht->array[index] = newnode;
-			}
-		}
+		hash_table_loop_n_set(ht, key, value, temp, index);
 	}
 	return (1);
 }
@@ -116,4 +62,50 @@ hash_node_t *create_new_node(const char *key, const char *value)
 	if (newnode->value == NULL)
 		return (NULL);
 	return (newnode);
+}
+
+/**
+  * hash_table_loop_n_set - Used to loop through an hashtable and set
+  * it values based on some conditions.
+  * @ht: hash table.
+  * @key: hash key.
+  * @value: hash value.
+  * @temp: temporaty index storage.
+  * @index: hash table key index.
+  * Return: void.
+  */
+int hash_table_loop_n_set(hash_table_t *ht, const char *key, const char *value,
+hash_node_t *temp, unsigned long int index)
+{
+		hash_node_t *newnode;
+
+	while (temp->next != NULL)
+	{
+		if (strcmp(temp->key, key) == 0)
+		{
+			temp->value = realloc(temp->value, strlen(value) + 1);
+			strcpy(temp->value, value);
+			break;
+		}
+		temp = temp->next;
+	}
+	if (temp->next == NULL)
+	{
+		if (strcmp(temp->key, key) == 0)
+		{
+			temp->value = realloc(temp->value, strlen(value) + 1);
+			strcpy(temp->value, value);
+		}
+		else
+		{
+			newnode = create_new_node(key, value);
+			if (newnode == NULL)
+				return (0);
+			strcpy(newnode->key, key);
+			strcpy(newnode->value, value);
+			newnode->next = ht->array[index];
+			ht->array[index] = newnode;
+		}
+	}
+	return (1);
 }

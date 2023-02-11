@@ -37,4 +37,6 @@ unsigned long int hash_djb2(const unsigned char *);
 unsigned long int key_index(const unsigned char *, unsigned long int);
 int hash_table_set(hash_table_t *, const char *, const char *);
 hash_node_t *create_new_node(const char *, const char *);
+int hash_table_loop_n_set(hash_table_t *, const char *, const char *,
+hash_node_t *, unsigned long int);
 #endif
