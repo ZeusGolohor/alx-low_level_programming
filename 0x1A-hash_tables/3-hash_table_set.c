@@ -55,10 +55,10 @@ hash_node_t *create_new_node(const char *key, const char *value)
 	newnode = malloc(sizeof(hash_node_t));
 	if (newnode == NULL)
 		return (NULL);
-	newnode->key = malloc(sizeof(strlen(key) + 1));
+	newnode->key = malloc(strlen(key) + 1);
 	if (newnode->key == NULL)
 		return (NULL);
-	newnode->value = malloc(sizeof(strlen(value) + 1));
+	newnode->value = malloc(strlen(value) + 1);
 	if (newnode->value == NULL)
 		return (NULL);
 	return (newnode);
