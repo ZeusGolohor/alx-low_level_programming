@@ -10,6 +10,8 @@ void hash_table_print(const hash_table_t *ht)
 	unsigned long int index, seen = 0;
 	hash_node_t *temp;
 
+	if (ht != NULL)
+	{
 	printf("{");
 	index = 0;
 	while (index < ht->size)
@@ -36,4 +38,5 @@ void hash_table_print(const hash_table_t *ht)
 		index++;
 	}
 	printf("}\n");
+	}
 }
