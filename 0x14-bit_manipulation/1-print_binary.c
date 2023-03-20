@@ -1,73 +1,64 @@
 #include "main.h"
 
 /**
-  * print_binary - Used to convert a decimal to binary.
-  * @n: unsigned long int
+  * print_binary - Used to convert a decimal to
+  * a binary number.
+  * @n: The decimal number to be converted.
   * Return: void.
   */
-
 void print_binary(unsigned long int n)
 {
-	unsigned long int counter = 1, *count = &counter, slot = 0;
+	unsigned long int num = 0;
+	long int i = 0;
 
 	if (n == 0)
-		_putchar('0');
-	else if (n == 1)
-		_putchar('1');
-	else if (n > 1)
 	{
-		get_highest_index(n, count);
-		while (*(count) > 1)
+		_putchar('0');
+	}
+	else
+	{
+		while (num < n)
 		{
-			if ((slot + _pow_ulong(2, (*(count) - 2))) <= n)
+			num = num + _pow_ulong_int(i, 2);
+			i++;
+		}
+		i--;
+		_putchar('1');
+		num = _pow_ulong_int(i, 2);
+		i--;
+		while (i >= 0)
+		{
+			if ((num + _pow_ulong_int(i, 2)) <= n)
 			{
+				num = num + _pow_ulong_int(i, 2);
 				_putchar('1');
-				slot = ((slot + _pow_ulong(2, (*(count) - 2))));
 			}
 			else
-			{
 				_putchar('0');
-			}
-			*count = (*(count) - 1);
+			i--;
 		}
 	}
 }
 
 /**
-  * get_highest_index - Used to get the highest index if a decimal in binary.
-  * @n: unsigned long int
-  * @count: ulong int*
-  * Return: void.
+  * _pow_ulong_int - Used to get the result of a number
+  * multiplied by another number muiltiple times.
+  * @times: number of times a number should be multiplied.
+  * @num: The number to be multiplied.
+  * Return: unsigned long int.
   */
-
-void get_highest_index(unsigned long int n, unsigned long int *count)
+unsigned long int _pow_ulong_int(long int times, unsigned long int num)
 {
-	if (n > 0)
-	{
-		*count = (*(count) + 1);
-		get_highest_index((n >> 1), count);
-	}
-}
+	unsigned long int b;
+	long int i;
 
-/**
-  * _pow_ulong - Used to the result of a number raise to power of x.
-  * @y: ulong int
-  * @x: ulong int
-  * Return: ulong int.
-  */
-
-unsigned long int _pow_ulong(unsigned long int y, unsigned long int x)
-{
-	unsigned long int n = 1, i;
-
-	if (y == 0)
-		return (0);
-
+	b = 1;
 	i = 0;
-	while (i < x)
+	while (i < times)
 	{
-		n *= y;
+		b = b * num;
 		i++;
 	}
-	return (n);
+	return (b);
 }
+
