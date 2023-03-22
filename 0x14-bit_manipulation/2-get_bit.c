@@ -11,6 +11,8 @@ int get_bit(unsigned long int n, unsigned int index)
 	unsigned long int num = 0;
 	long int i = 0;
 
+	if (n)
+		return (-1);
 	if (n < 5000)
 	{
 		while (num <= n)
