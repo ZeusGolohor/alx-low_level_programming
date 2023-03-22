@@ -10,8 +10,8 @@ int get_bit(unsigned long int n, unsigned int index)
 {
 	unsigned long int num = 0;
 	long int i = 0;
-	
-	while (num <= n)
+
+	while (i <= index)
 	{
 		num = num + _pow_ulong_int(i, 2);
 		i++;
