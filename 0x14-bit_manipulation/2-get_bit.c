@@ -8,11 +8,12 @@
   */
 int get_bit(unsigned long int n, unsigned int index)
 {
-	unsigned long int num = 0, max = 4294967295;
+	unsigned long int num = 0;
+/**	unsigned long int max = 4294967295;*/
 	long int i = 0;
 
-	if (n > max)
-		return (-1);
+	if (_pow_ulong_int(index, 2) == 0)
+			return (-1);
 
 	if (n < 5000)
 	{
