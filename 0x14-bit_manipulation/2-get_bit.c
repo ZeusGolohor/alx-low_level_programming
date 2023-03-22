@@ -1,76 +1,54 @@
 #include "main.h"
 
 /**
-  * get_bit - Used to get the value of a bit at a given index.
-  * @n: unsigned long int.
-  * @index: unsigned int.
-  * Return: int.
+  * get_bit - Used to get a bit at a given index.
+  * @n: Decimal number to be converted to binary.
+  * @index: index of the binary to find.
+  * Return: Void.
   */
-
 int get_bit(unsigned long int n, unsigned int index)
 {
-	unsigned int counter = 1, *count = &counter;
-	unsigned long int slot = 0;
-	int bit = 0;
-
-	get_highest_index_ulong_uint(n, count);
-	/**printf("count: %u_", (*count - 1));*/
-	while (*count > 1)
+	unsigned long int num = 0;
+	long int i = 0;
+	
+	while (num <= n)
 	{
-		/**printf("%lu_", _pow_ulong_uint(2, (*count - 2)));*/
-		if (slot + _pow_ulong_uint(2, (*count - 2)) <= n)
-		{
-			slot = (slot + _pow_ulong_uint(2, (*count - 2)));
-			if (index == (*count - 2))
-				bit = 1;
-		}
-		else
-		{
-			if (index == (*count - 2))
-				bit = 0;
-		}
-		*count = (*count - 1);
-	}
-	if (index > (*count - 2))
-		return (-1);
-
-	return (bit);
-}
-
-/**
-  * get_highest_index_ulong_uint - used to get the highest index of a decimal.
-  * @n: unsigned long int.
-  * @count: unsigned int.
-  * Return: void.
-  */
-
-void get_highest_index_ulong_uint(unsigned long int n, unsigned int *count)
-{
-	if (n > 0)
-	{
-		*count = (*(count) + 1);
-		get_highest_index_ulong_uint((n >> 1), count);
-	}
-}
-
-/**
-  * _pow_ulong_uint - Used to get the result of a number raise to the power of
-  * x.
-  * @y: unsigned long int.
-  * @x: unit.
-  * Return: ulong.
-  */
-
-unsigned long int _pow_ulong_uint(unsigned long int y, unsigned int x)
-{
-	unsigned long int n = 1;
-	unsigned int i;
-
-	i = 0;
-	while (i < x)
-	{
-		n *= y;
+		num = num + _pow_ulong_int(i, 2);
 		i++;
 	}
-	return (n);
+	i--;
+	num = 0;
+	while (i >= 0)
+	{
+		if ((num + _pow_ulong_int(i, 2)) <= n)
+		{
+			num = num + _pow_ulong_int(i, 2);
+			if (i == index)
+				return (1);
+		}
+		--i;
+	}
+	return (0);
+}
+
+/**
+  * _pow_ulong_int - Used to get the result of a number
+  * multiplied by another number muiltiple times.
+  * @times: number of times a number should be multiplied.
+  * @num: The number to be multiplied.
+  * Return: unsigned long int.
+  */
+unsigned long int _pow_ulong_int(long int times, unsigned long int num)
+{
+	unsigned long int b;
+	long int i;
+
+	b = 1;
+	i = 0;
+	while (i < times)
+	{
+		b = b * num;
+		i++;
+	}
+	return (b);
 }
