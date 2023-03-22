@@ -11,10 +11,21 @@ int get_bit(unsigned long int n, unsigned int index)
 	unsigned long int num = 0;
 	long int i = 0;
 
-	while (i <= index)
+	if (n < 5000)
 	{
-		num = num + _pow_ulong_int(i, 2);
-		i++;
+		while (num <= n)
+		{
+			num = num + _pow_ulong_int(i, 2);
+			i++;
+		}
+	}
+	else
+	{
+		while (i <= index)
+		{
+			num = num + _pow_ulong_int(i, 2);
+			i++;
+		}
 	}
 	i--;
 	num = 0;
