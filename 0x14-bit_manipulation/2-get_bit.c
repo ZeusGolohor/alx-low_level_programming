@@ -13,7 +13,7 @@ int get_bit(unsigned long int n, unsigned int index)
 	long int i = 0;
 
 	if (_pow_ulong_int(index, 2) == 0)
-			return (-1);
+		return (-1);
 
 	if (n < 5000)
 	{
