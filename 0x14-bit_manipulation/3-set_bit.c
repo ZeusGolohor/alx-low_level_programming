@@ -13,7 +13,7 @@ int set_bit(unsigned long int *n, unsigned int index)
 	int added = 0;
 
 	if (_pow_ulong_int(index, 2) == 0)
-		return (0);
+		return (-1);
 	while (num <= *n)
 	{
 		num = num + _pow_ulong_int(i, 2);
