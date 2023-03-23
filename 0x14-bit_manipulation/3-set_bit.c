@@ -1,52 +1,44 @@
 #include "main.h"
 
 /**
-  * get_bit - Used to get a bit at a given index.
+  * set_bit - Used to set the value of a bit to 1 at a given index.
   * @n: Decimal number to be converted to binary.
-  * @index: index of the binary to find.
-  * Return: Void.
+  * @index: Index of binary to set.
+  * Return: int.
   */
-int get_bit(unsigned long int n, unsigned int index)
+int set_bit(unsigned long int *n, unsigned int index)
 {
-	unsigned long int num = 0;
 	long int i = 0;
+	unsigned long int num = 0, new = *n;
+	int added = 0;
 
 	if (_pow_ulong_int(index, 2) == 0)
-		return (-1);
-
-	if (n < 5000)
+		return (0);
+	while (num <= *n)
 	{
-		while (num <= n)
-		{
-			num = num + _pow_ulong_int(i, 2);
-			i++;
-		}
+		num = num + _pow_ulong_int(i, 2);
+		i++;
 	}
-	else
-	{
-		while (i <= index)
-		{
-			num = num + _pow_ulong_int(i, 2);
-			i++;
-		}
-	}
-	i--;
+	--i;
 	num = 0;
 	while (i >= 0)
 	{
-		if ((num + _pow_ulong_int(i, 2)) <= n)
+		if ((num + _pow_ulong_int(i, 2)) <= new)
 		{
-			num = num + _pow_ulong_int(i, 2);
 			if (i == index)
-				return (1);
+				added = 1;
+			num = num + _pow_ulong_int(i, 2);
 		}
 		--i;
 	}
-	return (0);
+	if (added == 0)
+		num = num + _pow_ulong_int(index, 2);
+	*n = num;
+	return (1);
 }
 
 /**
-  * _pow_ulong_int - Used to get the result of a number
+  * _pow_ulong_int - Used to get the result of a number.
   * multiplied by another number muiltiple times.
   * @times: number of times a number should be multiplied.
   * @num: The number to be multiplied.
