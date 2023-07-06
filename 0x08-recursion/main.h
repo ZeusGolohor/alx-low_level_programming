@@ -10,4 +10,6 @@ void _str_len(char *, int **);
 int factorial(int);
 int _pow_recursion(int, int);
 int _pow_r(int, int);
+int _sqrt_recursion(int);
+int _sqrt_r(int, int);
 #endif
