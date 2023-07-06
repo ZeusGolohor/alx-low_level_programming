@@ -12,4 +12,6 @@ int _pow_recursion(int, int);
 int _pow_r(int, int);
 int _sqrt_recursion(int);
 int _sqrt_r(int, int);
+int is_prime_number(int);
+int is_p(int, int, int **);
 #endif
