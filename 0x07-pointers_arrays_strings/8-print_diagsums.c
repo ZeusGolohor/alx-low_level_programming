@@ -11,13 +11,37 @@
 
 void print_diagsums(int *a, int size)
 {
-	int i, x;
+	int main_size = (size * size), i, count = 0, check = 0;
+	int count2 = 0, check2 = (size - 1);
 
-	for (i = 0; i < size; i++)
+	for (i = 0; i < main_size; i++)
 	{
-		for (x = 0; x < size; x++)
+		printf("%d, ", *(a + i));
+		if (i == 0)
 		{
-			printf("a[%d][%d] = %d\n", i, x, a[size - i - 1]);
+			count = count + *(a + i);
+			/**printf("<-yes");*/
+			check = size + 1;
+		}
+		else
+		{
+			if (i == check)
+			{
+/**				printf("<-yes");*/
+				count = count + *(a + i);
+				check = check + check;
+			}
+		}
+		if (i == check2)
+		{
+			printf("<-*2*%d ", i);
+			if (i == (size - 1))
+				count2 = 0 + *(a + i);
+			else
+				count2 = count2 + *(a + i);
+			check2 = check2 + check2;
 		}
 	}
+
+	printf("\n%d, %d\n", count, count2);
 }
