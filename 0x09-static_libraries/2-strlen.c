@@ -14,3 +14,4 @@ while (s[i])
 
 return (i);
 }
+

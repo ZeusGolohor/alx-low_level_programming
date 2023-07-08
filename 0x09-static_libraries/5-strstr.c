@@ -27,3 +27,4 @@ for (i = 0; haystack[i] > '\0'; i++)
 }
 return (0);
 }
+
