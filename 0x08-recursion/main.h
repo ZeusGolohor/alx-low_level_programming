@@ -19,4 +19,5 @@ int is_pa(char *,char *, int **, int **);
 int is_paR(char *);
 int get_s_l(char *, int **);
 int char_cmp(char, char);
+int wildcmp(char *s1, char *s2);
 #endif
