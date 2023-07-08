@@ -16,4 +16,3 @@ while (s[i])
 }
 _putchar('\n');
 }
-
