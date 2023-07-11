@@ -19,7 +19,7 @@ char *str_concat(char *s1, char *s2)
 	if (str == NULL)
 		return (NULL);
 	for (i = 0; i < s1_size; i++)
-		str[i] = s1[i];	
+		str[i] = s1[i];
 	for (y = 0; y < s2_size; y++)
 	{
 		str[i] = s2[y];
