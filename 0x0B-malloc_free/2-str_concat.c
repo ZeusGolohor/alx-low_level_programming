@@ -9,11 +9,9 @@
  */
 char *str_concat(char *s1, char *s2)
 {
-	unsigned int s1_size, s2_size, i, y = 0, total_size = 0;
+	unsigned int s1_size, s2_size, y = 0, i = 0, total_size = 0;
 	char *str;
 
-	if ((s1 == NULL) && (s2 == NULL))
-		return (NULL);
 	s1_size = get_size(s1);
 	s2_size = get_size(s2);
 	total_size = (s1_size + s2_size + 1);
@@ -21,13 +19,13 @@ char *str_concat(char *s1, char *s2)
 	if (str == NULL)
 		return (NULL);
 	for (i = 0; i < s1_size; i++)
-		str[i] = s1[i];
-	for (i = s1_size; i < total_size; i++)
+		str[i] = s1[i];	
+	for (y = 0; y < s2_size; y++)
 	{
 		str[i] = s2[y];
-		y = y + 1;
+		i = i + 1;
 	}
-	str[i] = '\0';
+	str[i + 1] = '\0';
 	return (str);
 }
 
