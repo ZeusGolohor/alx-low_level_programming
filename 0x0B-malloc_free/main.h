@@ -5,4 +5,5 @@
 char *create_array(unsigned int, char);
 char *_strdup(char *);
 unsigned int get_size(char *);
+char *str_concat(char *, char *);
 #endif
