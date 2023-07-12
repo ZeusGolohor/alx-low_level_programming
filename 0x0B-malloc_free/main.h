@@ -9,4 +9,5 @@ char *str_concat(char *, char *);
 int **alloc_grid(int, int);
 void *_malloc(size_t);
 void free_grid(int **, int);
+char *argstostr(int, char **);
 #endif
