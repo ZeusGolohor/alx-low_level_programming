@@ -8,4 +8,5 @@ unsigned int get_size(char *);
 char *str_concat(char *, char *);
 int **alloc_grid(int, int);
 void *_malloc(size_t);
+void free_grid(int **, int);
 #endif
