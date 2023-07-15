@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include "main.h"
+#include <stdio.h>
 
 int main(int ac, char *av[])
 {
@@ -9,7 +9,7 @@ int main(int ac, char *av[])
 
 	if (ac != 3)
 	{
-		printf("Error\n");
+		_print("Error\n");
 		exit(98);
 	}
 	for (i = 1; i < ac; i++)
@@ -21,7 +21,7 @@ int main(int ac, char *av[])
 			{}
 			else
 			{
-				printf("Error: %c\n", av[i][x]);
+				_print("Error\n");
 				exit(98);
 			}
 		}
@@ -31,7 +31,7 @@ int main(int ac, char *av[])
 	return (0);
 }
 
-/*
+
 void _print(char *str)
 {
 	unsigned int len, i;
@@ -42,4 +42,4 @@ void _print(char *str)
 		_putchar(str[i]);
 	}
 }
-*/
+
