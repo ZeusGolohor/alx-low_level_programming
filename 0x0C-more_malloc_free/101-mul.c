@@ -26,7 +26,7 @@ int main(int ac, char *av[])
 			}
 		}
 	}
-	total = atoi(av[1]) * atoi(av[2]);
+	total = (*av[1] - '0') * (*av[2] - '0');
 	printf("%ld\n", total);
 	return (0);
 }
