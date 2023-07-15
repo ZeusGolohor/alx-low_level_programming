@@ -9,7 +9,7 @@ int main(int ac, char *av[])
 
 	if (ac != 3)
 	{
-		_print("Error\n");
+		printf("Error\n");
 		exit(98);
 	}
 	for (i = 1; i < ac; i++)
@@ -31,6 +31,7 @@ int main(int ac, char *av[])
 	return (0);
 }
 
+/*
 void _print(char *str)
 {
 	unsigned int len, i;
@@ -41,3 +42,4 @@ void _print(char *str)
 		_putchar(str[i]);
 	}
 }
+*/
