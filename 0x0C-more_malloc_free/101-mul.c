@@ -1,6 +1,8 @@
 #include "main.h"
 #include <stdio.h>
 
+void _print(char *);
+
 int main(int ac, char *av[])
 {
 	int i;
@@ -26,7 +28,7 @@ int main(int ac, char *av[])
 			}
 		}
 	}
-	total = (*av[1] - '0') * (*av[2] - '0');
+	total = atoi(av[1]) * atoi(av[2]);
 	printf("%ld\n", total);
 	return (0);
 }
