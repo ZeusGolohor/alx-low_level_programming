@@ -43,7 +43,7 @@ int main(int ac, char *av[])
 /**
  * _print - A funtion to print strings.
  * @str: the tring to be printed.
- * 
+ *
  * Return: void.
  */
 void _print(char *str)
