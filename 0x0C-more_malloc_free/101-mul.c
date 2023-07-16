@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 void _print(char *);
+unsigned int get_size(char *);
 
 int main(int ac, char *av[])
 {
