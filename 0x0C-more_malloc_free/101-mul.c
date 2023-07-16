@@ -2,7 +2,6 @@
 #include <stdio.h>
 
 void _print(char *);
-size_t get_size(char *);
 
 /**
  * main - A  program that multiplies two positive numbers.
@@ -64,7 +63,7 @@ void _print(char *str)
  *
  * Return: unsigned int.
  */
-size_t get_size(char *str)
+unsigned int get_size(char *str)
 {
 	size_t i, count = 0;
 
