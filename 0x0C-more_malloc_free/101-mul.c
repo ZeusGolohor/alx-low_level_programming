@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 void _print(char *);
-size_t get_size2(char *);
+size_t get_size(char *);
 
 /**
  * main - A  program that multiplies two positive numbers.
@@ -24,7 +24,7 @@ int main(int ac, char *av[])
 	}
 	for (i = 1; i < ac; i++)
 	{
-		temp_size = get_size2(av[i]);
+		temp_size = get_size(av[i]);
 		for (x = 0; x < temp_size; x++)
 		{
 			if ((av[i][x] >= '0') && (av[i][x] <= '9'))
@@ -64,7 +64,7 @@ void _print(char *str)
  *
  * Return: unsigned int.
  */
-size_t get_size2(char *str)
+size_t get_size(char *str)
 {
 	size_t i, count = 0;
 
