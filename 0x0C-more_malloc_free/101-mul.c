@@ -2,8 +2,15 @@
 #include <stdio.h>
 
 void _print(char *);
-unsigned int get_size(char *);
+size_t get_size2(char *);
 
+/**
+ * main - A  program that multiplies two positive numbers.
+ * @ac: number of arguments passed to the program.
+ * @av: arguements passed tot the program.
+ *
+ * Return: int.
+ */
 int main(int ac, char *av[])
 {
 	int i;
@@ -17,7 +24,7 @@ int main(int ac, char *av[])
 	}
 	for (i = 1; i < ac; i++)
 	{
-		temp_size = get_size(av[i]);
+		temp_size = get_size2(av[i]);
 		for (x = 0; x < temp_size; x++)
 		{
 			if ((av[i][x] >= '0') && (av[i][x] <= '9'))
@@ -29,12 +36,17 @@ int main(int ac, char *av[])
 			}
 		}
 	}
-	total = atoi(av[1]) * atoi(av[2]);
+	total = atoll(av[1]) * atoll(av[2]);
 	printf("%ld\n", total);
 	return (0);
 }
 
-
+/**
+ * _print - A funtion to print strings.
+ * @str: the tring to be printed.
+ * 
+ * Return: void.
+ */
 void _print(char *str)
 {
 	unsigned int len, i;
@@ -52,9 +64,9 @@ void _print(char *str)
  *
  * Return: unsigned int.
  */
-unsigned int get_size(char *str)
+size_t get_size2(char *str)
 {
-	unsigned int i, count = 0;
+	size_t i, count = 0;
 
 	if (str == NULL)
 		return (0);
