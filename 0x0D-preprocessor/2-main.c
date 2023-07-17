@@ -3,6 +3,11 @@
 #include <stdio.h>
 #endif
 
+/**
+ * main - proram entry point.
+ *
+ * Return: int.
+ */
 int main(void)
 {
 	printf("%s\n", __BASE_FILE__);
