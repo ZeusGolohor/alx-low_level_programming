@@ -1,6 +1,7 @@
 #ifndef DOG_H
 #define DOG_H
 #include <stddef.h>
+#include <stdio.h>
 /**
  * struct dog - Used to create a new dog.
  * @name: dog's name.
@@ -16,4 +17,5 @@ float age;
 char *owner;
 } dog;
 void init_dog(struct dog *d, char *, float, char *);
+void print_dog(struct dog *);
 #endif
