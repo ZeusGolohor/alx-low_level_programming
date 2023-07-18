@@ -1,35 +1,24 @@
 #include "dog.h"
 
 /**
-  * new_dog - Creates a new dog.
-  * @name: first operand.
-  * @age: second operand.
-  * @owner: third operand.
-  * Return: dog_t
-  */
-
+ * new_dog - A function that creates a new dog.
+ * @name: dog's name.
+ * @age: dog's age.
+ * @owner: dog's owner.
+ *
+ * Return: void.
+ */
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *dog;
 
+	if ((name == NULL) || (owner == NULL))
+		return (NULL);
 	dog = malloc(sizeof(dog_t));
 	if (dog == NULL)
-	{
-		free(dog);
 		return (NULL);
-	}
-	dog->name = malloc(strlen(name) + 1);
-	dog->owner = malloc(strlen(owner) + 1);
-	if (dog->name == NULL || dog->owner == NULL)
-	{
-		free(dog->name);
-		free(dog->owner);
-		free(dog);
-		return (NULL);
-	}
-	dog->name = strcpy(dog->name, name);
+	dog->name = name;
 	dog->age = age;
-	dog->owner = strcpy(dog->owner, owner);
+	dog->owner = owner;
 	return (dog);
 }
-
