@@ -22,4 +22,5 @@ void init_dog(struct dog *d, char *, float, char *);
 void print_dog(struct dog *);
 dog_t *new_dog(char *, float, char *);
 void free_dog(dog_t *);
+unsigned int get_size(char *);
 #endif
