@@ -3,9 +3,10 @@
 /**
   * get_op_func - to select the right function
   * to perform an operation.
-  * @s: op code string.
+  * @s: first operand.
   * Return: int.
   */
+
 int (*get_op_func(char *s))(int, int)
 {
 	op_t ops[] = {
@@ -19,13 +20,9 @@ int (*get_op_func(char *s))(int, int)
 	int i;
 
 	i = 0;
-	while (ops[i].op != NULL)
-	{
-		if (*(ops[i]).op == *s)
-		{
-			return (ops[i].f);
-		}
+	while (ops[i].op != NULL && *(ops[i].op) != *s)
 		i++;
-	}
-	return (NULL);
+	return (ops[i].f);
 }
+
+

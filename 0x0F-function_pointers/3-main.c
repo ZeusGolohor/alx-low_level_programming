@@ -1,40 +1,23 @@
 #include "3-calc.h"
 
 /**
-  * main - Entry point
-  * @argc: first operand.
-  * @argv: second operand.
-  * Return: int;
-  */
-
+ * main - program entry point.
+ * @argc: numbers of arguments passed to the program.
+ * @argv: a pointer to pointers of strings of arguments passed to the
+ * program.
+ *
+ * Return: int.
+ */
 int main(int argc, char *argv[])
 {
-	int arg1, arg2;
+	int result;
 
-	if (argc == 4)
-	{
-		arg1 = atoi(argv[1]);
-		arg2 = atoi(argv[3]);
-		if ((*get_op_func(argv[2])) != NULL)
-			if (strlen(argv[2]) == 1)
-				printf("%d", (*get_op_func(argv[2]))(arg1, arg2));
-			else
-			{
-				printf("Error\n");
-				exit(99);
-			}
-		else
-		{
-			printf("Error\n");
-			exit(99);
-		}
-		printf("\n");
-	}
-	else
+	if ((argc == 0) || (argc != 4))
 	{
 		printf("Error\n");
 		exit(98);
 	}
+	result = (*get_op_func(argv[2]))(atoi(argv[1]), atoi(argv[3]));
+	printf("%d\n", result);
 	return (0);
 }
-
