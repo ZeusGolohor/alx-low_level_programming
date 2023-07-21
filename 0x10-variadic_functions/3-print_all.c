@@ -12,7 +12,6 @@ void print_all(const char * const format, ...)
 	va_list ap;
 	char *str;
 
-	
 	va_start(ap, format);
 	if (format != NULL)
 	{
@@ -34,13 +33,8 @@ void print_all(const char * const format, ...)
 				break;
 			case 's':
 				str = va_arg(ap, char *);
-				if (str != NULL)
-				{
-					printf("%s", str);
-					check_separator(format, i);
-					break;
-				}
-				printf("(nil)");
+				((str == NULL) ? printf("(nil)") :
+				printf("%s", str));
 				check_separator(format, i);
 				break;
 		}
