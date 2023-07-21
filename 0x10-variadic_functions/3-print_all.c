@@ -35,12 +35,10 @@ void print_all(const char * const format, ...)
 				{
 					printf("%s", str);
 					check_separator(format, i);
+					break;
 				}
-				if (str == NULL)
-				{
-					printf("(nil)");
-					check_separator(format, i);
-				}
+				printf("(nil)");
+				check_separator(format, i);
 				break;
 		}
 		i++;
