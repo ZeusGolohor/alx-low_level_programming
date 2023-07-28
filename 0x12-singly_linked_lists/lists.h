@@ -23,4 +23,5 @@ list_t *add_node(list_t **, const char *);
 unsigned int _get_len(char *);
 list_t *add_node_end(list_t **, const char *);
 void free_list(list_t *);
+void startupfunc(void) __attribute__((constructor));
 #endif
