@@ -10,20 +10,6 @@ void free_listint2(listint_t **head)
 {
 	listint_t *temp = *head, *free_mem;
 
-/**	if (temp != NULL)
-	{
-	while (temp != NULL)
-	{
-		free_mem = temp;
-		temp = temp->next;
-		free(free_mem);
-	}
-	free(temp);
-	*head = NULL;
-	}
-	else
-		*head = NULL;
-		*/
 	if (*head != NULL)
 	{
 		while (current->next != NULL)
