@@ -21,7 +21,7 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 		_index_0_check(head);
 		return (1);
 	}
-	else if (temp->next->next == NULL)
+	else if ((temp->next != NULL) && (temp->next->next == NULL))
 	{
 		free_mem = temp->next;
 		temp->next = NULL;
