@@ -18,19 +18,15 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 	temp = *head;
 	if (index == 0)
 	{
-		if (temp->next != NULL)
-		{
-		free_mem = temp;
-		*head = temp->next;
+		_index_0_check(head);
+		return (1);
+	}
+	else if (temp->next->next == NULL)
+	{
+		free_mem = temp->next;
+		temp->next = NULL;
 		free(free_mem);
 		return (1);
-		}
-		else if (temp->next == NULL)
-		{
-			*head = NULL;
-			free(temp);
-			return (1);
-		}
 	}
 	else
 	{
@@ -49,4 +45,28 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 		}
 	}
 	return (-1);
+}
+
+/**
+ * _index_0_check - A function to check and modify the index node.
+ * @head: a pointer to a pointer to the head node.
+ *
+ * Return: void.
+ */
+void _index_0_check(listint_t **head)
+{
+	listint_t *temp, *free_mem;
+
+	temp = *head;
+	if (temp->next != NULL)
+	{
+		free_mem = temp;
+		*head = temp->next;
+		free(free_mem);
+	}
+	else if (temp->next == NULL)
+	{
+		*head = NULL;
+		free(temp);
+	}
 }
