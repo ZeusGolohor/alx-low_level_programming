@@ -39,6 +39,7 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 				if (temp->next != NULL)
 					temp->next = temp->next->next;
 				free(free_mem);
+				return (1);
 			}
 			i = i + 1;
 			temp = temp->next;
