@@ -1,54 +1,69 @@
 #include "main.h"
 
 /**
-  * binary_to_uint - Used to convert a binary number to
-  * an unsigned int.
-  * @b: The binary to be converted.
-  * Return: unsigned int.
-  */
+ * binary_to_uint - A function that converts a binary number to an unsigned
+ * int.
+ * @b: a brinary string.
+ *
+ * Return: unsigned int.
+ */
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int bin, i, len;
+	unsigned int i = 0, len = 0, total = 0;
 
-	i = 0;
-	bin = 0;
-	len = 0;
 	if (b == NULL)
 		return (0);
-	while (b[len] != '\0')
-		len++;
-	while (i < len)
+	len = _bstrlen(b);
+	if (len == 0)
+		return (0);
+	while (len > 0)
 	{
-		if ((b[len - (i + 1)] != 49) && (b[len - (i + 1)] != 48))
-		{
-			return (0);
-		}
-		if (b[len - (i + 1)] == 49)
-		{
-			bin = bin + _pow(i, 2);
-		}
-		i++;
+		if (b[i] == '1')
+			total = total + _pow(2, (len - 1));
+		--len;
+		++i;
 	}
-	return (bin);
+	return (total);
 }
 
 /**
-  * _pow -  Used to get a number raised to the
-  * power of another number.
-  * @times: Number of times a number should be multiplied.
-  * @num: The number to be multipled.
-  * Return: unsigned int.
-  */
-unsigned int _pow(unsigned int times, unsigned int num)
+ * _bstrlen - A function to get the highest index in a binary and
+ * to check if a binary string contains only 0 & 1.
+ * @b: the binary string.
+ *
+ * Return: unsigned int.
+ */
+unsigned int _bstrlen(const char *b)
 {
-	unsigned int b, n;
+	unsigned int i = 0;
 
-	b = 1;
-	n = 0;
-	while (n < times)
+	while (b[i] != '\0')
 	{
-		b = b * num;
-		n++;
+		if ((b[i] != '0') && (b[i] != '1'))
+			return (0);
+		i++;
 	}
-	return (b);
+	return (i);
+}
+
+/**
+ * _pow - a function to get the results of a number raised to the power of
+ * another number.
+ * @number: the number used for multiplication.
+ * @power: how many times to multiply @number by @number.
+ *
+ * Return: unsigned int.
+ */
+unsigned int _pow(unsigned int number, unsigned int power)
+{
+	unsigned int pow = 1;
+
+	if (power == 0)
+		return (1);
+	while (power > 0)
+	{
+		pow = pow * number;
+		--power;
+	}
+	return (pow);
 }
