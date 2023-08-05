@@ -7,5 +7,5 @@ unsigned int _pow(unsigned int, unsigned int);
 unsigned long int _pow_lint(unsigned long int, long int);
 void print_binary(unsigned long int);
 int _putchar(char);
-unsigned long int _pow_ulong_int(long int, unsigned long int);
+int get_bit(unsigned long int, unsigned int);
 #endif
