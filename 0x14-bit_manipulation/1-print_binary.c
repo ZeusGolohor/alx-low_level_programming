@@ -8,7 +8,8 @@
  */
 void print_binary(unsigned long int n)
 {
-	unsigned long int i = 0, total = 0;
+	unsigned long int total = 0;
+	long int i = 0;
 
 	if (n == 0)
 		_putchar('0');
@@ -19,7 +20,7 @@ void print_binary(unsigned long int n)
 		while (total < n)
 		{
 			total = total + _pow_lint(2, i);
-			++i;
+			i++;
 		}
 		total = 0;
 		while (i > 0)
@@ -44,10 +45,10 @@ void print_binary(unsigned long int n)
  *
  * Return: unsigned int.
  */
-unsigned long int _pow_lint(unsigned long int number, unsigned long int power)
+unsigned long int _pow_lint(unsigned long int number, long int power)
 {
-	unsigned int pow = 1;
-
+	unsigned long int pow = 1;
+	
 	if (power == 0)
 		return (1);
 	while (power > 0)
