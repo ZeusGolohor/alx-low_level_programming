@@ -8,7 +8,7 @@
  */
 void print_binary(unsigned long int n)
 {
-	unsigned int i = 0, total = 0;
+	unsigned long int i = 0, total = 0;
 
 	if (n == 0)
 		_putchar('0');
@@ -18,15 +18,15 @@ void print_binary(unsigned long int n)
 	{
 		while (total < n)
 		{
-			total = total + _pow(2, i);
+			total = total + _pow_lint(2, i);
 			++i;
 		}
 		total = 0;
 		while (i > 0)
 		{
-			if ((total + _pow(2, (i - 1))) <= n)
+			if ((total + _pow_lint(2, (i - 1))) <= n)
 			{
-				total = total + _pow(2, (i - 1));
+				total = total + _pow_lint(2, (i - 1));
 				_putchar('1');
 			}
 			else
@@ -37,14 +37,14 @@ void print_binary(unsigned long int n)
 }
 
 /**
- * _pow - a function to get the results of a number raised to the power of
+ * _pow_lint - a function to get the results of a number raised to the power of
  * another number.
  * @number: the number used for multiplication.
  * @power: how many times to multiply @number by @number.
  *
  * Return: unsigned int.
  */
-unsigned int _pow(unsigned int number, unsigned int power)
+unsigned long int _pow_lint(unsigned long int number, unsigned long int power)
 {
 	unsigned int pow = 1;
 
