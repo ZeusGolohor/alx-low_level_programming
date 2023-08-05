@@ -48,7 +48,7 @@ void print_binary(unsigned long int n)
 unsigned long int _pow_lint(unsigned long int number, long int power)
 {
 	unsigned long int pow = 1;
-	
+
 	if (power == 0)
 		return (1);
 	while (power > 0)
