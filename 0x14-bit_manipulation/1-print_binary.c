@@ -1,65 +1,59 @@
 #include "main.h"
 
 /**
-  * print_binary - Used to convert a decimal to
-  * a binary number.
-  * @n: The decimal number to be converted.
-  * Return: void.
-  */
+ * print_binary - A function that prints the binary representation of a number.
+ * @n: the number to be converted to binary.
+ *
+ * Return: void.
+ */
 void print_binary(unsigned long int n)
 {
-	unsigned long int num = 0;
-	long int i = 0;
+	unsigned int i = 0, total = 0;
 
 	if (n == 0)
-	{
 		_putchar('0');
-	}
+	else if (n == 1)
+		_putchar('1');
 	else
 	{
-		while (num < n)
+		while (total < n)
 		{
-			num = num + _pow_ulong_int(i, 2);
-			i++;
+			total = total + _pow(2, i);
+			++i;
 		}
-		i--;
-		_putchar('1');
-		num = _pow_ulong_int(i, 2);
-		i--;
-		while (i >= 0)
+		total = 0;
+		while (i > 0)
 		{
-			if ((num + _pow_ulong_int(i, 2)) <= n)
+			if ((total + _pow(2, (i - 1))) <= n)
 			{
-				num = num + _pow_ulong_int(i, 2);
+				total = total + _pow(2, (i - 1));
 				_putchar('1');
 			}
 			else
 				_putchar('0');
-			i--;
+			--i;
 		}
 	}
 }
 
 /**
-  * _pow_ulong_int - Used to get the result of a number
-  * multiplied by another number muiltiple times.
-  * @times: number of times a number should be multiplied.
-  * @num: The number to be multiplied.
-  * Return: unsigned long int.
-  */
-unsigned long int _pow_ulong_int(long int times, unsigned long int num)
+ * _pow - a function to get the results of a number raised to the power of
+ * another number.
+ * @number: the number used for multiplication.
+ * @power: how many times to multiply @number by @number.
+ *
+ * Return: unsigned int.
+ */
+unsigned int _pow(unsigned int number, unsigned int power)
 {
-	unsigned long int b;
-	long int i;
+	unsigned int pow = 1;
 
-	b = 1;
-	i = 0;
-	while (i < times)
+	if (power == 0)
+		return (1);
+	while (power > 0)
 	{
-		b = b * num;
-		i++;
+		pow = pow * number;
+		--power;
 	}
-	return (b);
+	return (pow);
 }
-
-
