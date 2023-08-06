@@ -10,4 +10,5 @@ void print_binary(unsigned long int);
 int _putchar(char);
 int get_bit(unsigned long int, unsigned int);
 unsigned int flip_bits(unsigned long int n, unsigned long int m);
+unsigned long int _pow_ulong_int(long int, unsigned long int);
 #endif
