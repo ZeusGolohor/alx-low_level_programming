@@ -52,8 +52,6 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 		if (fliped_indexes_n[x] != fliped_indexes_m[x])
 			flips = flips + 1;
 	}
-	free(fliped_indexes_n);
-	free(fliped_indexes_m);
 	return (flips);
 }
 
