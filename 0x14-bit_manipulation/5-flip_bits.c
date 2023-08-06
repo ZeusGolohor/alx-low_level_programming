@@ -18,8 +18,9 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 	fliped_indexes_m =  malloc(sizeof(int) * size);
 	if ((fliped_indexes_n == NULL) || (fliped_indexes_m == NULL))
 		return (0);
+	fliped_indexes_n[size] = -2;
 	total = 0;
-	while (i > 0)
+	while (i >= 0)
 	{
 		if ((total + _pow_lint(2, i)) <= n)
 		{
@@ -37,7 +38,7 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 	}
 	--i;
 	total = 0;
-	while (i > 0)
+	while (i >= 0)
 	{
 		if ((total + _pow_lint(2, i) <= m))
 		{
