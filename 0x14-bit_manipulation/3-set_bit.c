@@ -29,7 +29,7 @@ int set_bit(unsigned long int *n, unsigned int index)
 	}
 	total = total + _pow_lint(2, index);
 	*n = total;
-	if (_pow_lint(2, index) < _n)
+	if (_pow_lint(2, index) < __LONG_MAX__)
 		return (-1);
 	else
 		return (1);
