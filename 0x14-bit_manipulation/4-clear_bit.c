@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * set_bit - A function that sets the value of a bit to 1 at a given index.
+ * clear_bit - A function that sets the value of a bit to 1 at a given index.
  * @n: the number which bit is to be set.
  * @index: index of the bit to set.
  *
@@ -10,7 +10,7 @@
 int clear_bit(unsigned long int *n, unsigned int index)
 {
 	unsigned long int _n = *n, total = 0;
-	int i = 0;
+	long int i = 0, seen = 0;
 
 	while (total < _n)
 	{
@@ -23,11 +23,13 @@ int clear_bit(unsigned long int *n, unsigned int index)
 	{
 		if ((total + _pow_lint(2, i)) <= _n)
 		{
+			if (i == index)
+				seen = 1;
 			total = total + _pow_lint(2, i);
 		}
 		--i;
 	}
-	if (_pow_lint(2, index) <= total)
+	if (seen == 1)
 		total = total - _pow_lint(2, index);
 	*n = total;
 	if (_pow_lint(2, index) == 0)
