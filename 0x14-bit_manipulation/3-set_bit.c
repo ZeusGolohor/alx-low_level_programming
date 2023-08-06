@@ -31,7 +31,8 @@ int set_bit(unsigned long int *n, unsigned int index)
 	*n = total;
 	if (_pow_lint(2, index) < _n)
 		return (-1);
-	return (1);
+	else
+		return (1);
 }
 
 /**
