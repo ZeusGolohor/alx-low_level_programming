@@ -42,7 +42,7 @@ int get_bit(unsigned long int n, unsigned int index)
 				if (index == i)
 					return (0);
 			}
-			--i;
+ 			--i;
 		}
 	}
 	if (_pow_lint(2, index) < n)

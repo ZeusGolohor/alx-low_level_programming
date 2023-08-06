@@ -1,62 +1,56 @@
 #include "main.h"
 
 /**
-  * clear_bit - Used to set the value of a bit to 0 at a given index.
-  * @n: Decimal number to be converted to binary.
-  * @index: Index of binary to set.
-  * Return: int.
-  */
+ * clear_bit - A function that sets the value of a bit to 1 at a given index.
+ * @n: the number which bit is to be set.
+ * @index: index of the bit to set.
+ *
+ * Return: int.
+ */
 int clear_bit(unsigned long int *n, unsigned int index)
 {
-	long int i = 0;
-	unsigned long int num = 0;
-	int seen = 0;
+	unsigned long int _n = *n, total = 0;
+	int i = 0;
 
-	if (_pow_ulong_int(index, 2) == 0)
-		return (-1);
-
-	while (num <= *n)
+	while (total < _n)
 	{
-		num = num + _pow_ulong_int(i, 2);
-		i++;
+		total = total + _pow_lint(2, i);
+		++i;
 	}
 	--i;
-	num = 0;
+	total = 0;
 	while (i >= 0)
 	{
-		if ((num + _pow_ulong_int(i, 2)) <= *n)
+		if ((total + _pow_lint(2, i)) <= _n)
 		{
-			if (i == index)
-				seen = 1;
-			num = num + _pow_ulong_int(i, 2);
+			total = total + _pow_lint(2, i);
 		}
 		--i;
 	}
-	if (seen == 1)
-		num = num - _pow_ulong_int(index, 2);
-	*n = num;
+	if (total != 0)
+		total = total - _pow_lint(2, index);
+	*n = total;
+	if (_pow_lint(2, index) == 0)
+		return (-1);
 	return (1);
 }
 
 /**
-  * _pow_ulong_int - Used to get the result of a number.
-  * multiplied by another number muiltiple times.
-  * @times: number of times a number should be multiplied.
-  * @num: The number to be multiplied.
-  * Return: unsigned long int.
-  */
-unsigned long int _pow_ulong_int(long int times, unsigned long int num)
+ * _pow_lint - A function to get the result of a number raised to the power of
+ * another number.
+ * @number: the number to be multiplied by @power times.
+ * @power: the number of times to multiply a number by itself.
+ *
+ * Return: unsigned long int.
+ */
+unsigned long int _pow_lint(unsigned long int number, long int power)
 {
-	unsigned long int b;
-	long int i;
+	unsigned long int pow = 1;
 
-	b = 1;
-	i = 0;
-	while (i < times)
+	while (power > 0)
 	{
-		b = b * num;
-		i++;
+		pow = number * pow;
+		--power;
 	}
-	return (b);
+	return (pow);
 }
-
