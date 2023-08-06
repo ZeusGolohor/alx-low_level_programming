@@ -15,7 +15,6 @@ int set_bit(unsigned long int *n, unsigned int index)
 	while (total < _n)
 	{
 		total = total + _pow_lint(2, i);
-	/**	printf("%d: %d: %d\n", _pow(2, i), total, i);*/
 		++i;
 	}
 	--i;
@@ -30,6 +29,8 @@ int set_bit(unsigned long int *n, unsigned int index)
 	}
 	total = total + _pow_lint(2, index);
 	*n = total;
+	if (_pow_lint(2, index) < _n)
+		return (-1);
 	return (1);
 }
 
