@@ -13,7 +13,7 @@ int main(void)
     n = 1024;
     set_bit(&n, 5);
     printf("%lu\n", n);
-    n = 0;
+   n = 0;
     set_bit(&n, 10);
     printf("%lu\n", n);
     n = 98;
