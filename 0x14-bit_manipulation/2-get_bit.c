@@ -27,6 +27,8 @@ int get_bit(unsigned long int n, unsigned int index)
 		}
 		--i;
 		total = 0;
+		if (index > i)
+			return (0);
 		while (i >= 0)
 		{
 			if ((total + _pow_lint(2, i)) <= n)
