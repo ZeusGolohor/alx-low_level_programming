@@ -1,76 +1,85 @@
 #include "main.h"
 
+/**
+  * flip_bits - Used to return  the number of bits you would
+  * need to flip to get from one number to another.
+  * @n: Number to be converted to binary.
+  * @m: Number to be converted to binary.
+  * Return: unsigned int.
+  */
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-	unsigned long int total = 0;
-	long int i = 0, size = 0, x = 0;
-	unsigned int flips = 0, *fliped_indexes_n, *fliped_indexes_m, y = 0;
+	long int i = 0, x = 0, flips = 0;
+	unsigned long int numin = 0, numxm = 0;
+	char *n_array;
 
-	y = (n > m)? n: m;
-	while (total < y)
+	while (numin <= n)
 	{
-		total = total + _pow_lint(2, i);
-		++i;
+		numin = numin + _pow_ulong_int(i, 2);
+		i++;
 	}
 	--i;
-	size = i;
-	fliped_indexes_n =  malloc(sizeof(int) * size);
-	fliped_indexes_m =  malloc(sizeof(int) * size);
-	if ((fliped_indexes_n == NULL) || (fliped_indexes_m == NULL))
-		return (0);
-	fliped_indexes_n[size] = -2;
-	total = 0;
+	n_array = malloc(sizeof(char) * (i + 1));
+	if (n_array == NULL)
+		return (-1);
+	while (numxm <= m)
+	{
+		numxm = numxm + _pow_ulong_int(x, 2);
+		x++;
+	}
+	--x;
+	numin = 0;
+	numxm = 0;
 	while (i >= 0)
 	{
-		if ((total + _pow_lint(2, i)) <= n)
+		if ((numin + _pow_ulong_int(i, 2)) <= n)
 		{
-			total = total + _pow_lint(2, i);
-			fliped_indexes_n[(size - i)] = i;
+			numin = numin + _pow_ulong_int(i, 2);
+			n_array[i] = 1;
+			++flips;
 		}
+		else
+			n_array[i] = 0;
 		--i;
 	}
-	total = 0;
-	i = 0;
-	while (total < m)
+	while (x >= 0)
 	{
-		total = total + _pow_lint(2, i);
-		++i;
-	}
-	--i;
-	total = 0;
-	while (i >= 0)
-	{
-		if ((total + _pow_lint(2, i) <= m))
+		if ((numxm + _pow_ulong_int(x, 2) <= m))
 		{
-			total = total + _pow_lint(2, i);
-			fliped_indexes_m[(size - i)] = i;
+			numxm = numxm + _pow_ulong_int(x, 2);
+			if (x >= i)
+			{
+				if (n_array[x] != 1)
+					++flips;
+				else
+					--flips;
+			}
 		}
-		--i;
+		--x;
 	}
-	for (x = 0; x <= size; x++)
-	{
-		if (fliped_indexes_n[x] != fliped_indexes_m[x])
-			flips = flips + 1;
-	}
+	free(n_array);
 	return (flips);
 }
 
 /**
- * _pow_lint - A function to get the result of a number raised to the power of
- * another number.
- * @number: the number to be multiplied by @power times.
- * @power: the number of times to multiply a number by itself.
- *
- * Return: unsigned long int.
- */
-unsigned long int _pow_lint(unsigned long int number, long int power)
+  * _pow_ulong_int - Used to get the result of a number
+  * multiplied by another number muiltiple times.
+  * @times: number of times a number should be multiplied.
+  * @num: The number to be multiplied.
+  * Return: unsigned long int.
+  */
+unsigned long int _pow_ulong_int(long int times, unsigned long int num)
 {
-	unsigned long int pow = 1;
+	unsigned long int b;
+	long int i;
 
-	while (power > 0)
+	b = 1;
+	i = 0;
+	while (i < times)
 	{
-		pow = number * pow;
-		--power;
+		b = b * num;
+		i++;
 	}
-	return (pow);
+	return (b);
 }
+
