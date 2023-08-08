@@ -5,7 +5,6 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <stdio.h>
 ssize_t read_textfile(const char *, size_t);
 int _putchar(char);
 #endif
