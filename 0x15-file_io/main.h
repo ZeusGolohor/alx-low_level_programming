@@ -3,7 +3,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <stdlib.h>
 #include <unistd.h>
+#include <stdlib.h>
 ssize_t read_textfile(const char *, size_t);
 #endif
