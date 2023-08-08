@@ -20,7 +20,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	file = open(filename, O_RDONLY);
 	if (file == -1)
 		return (0);
-	if (letters != 0)
+/*	if (letters != 0)
 	{
 		buffer = malloc((sizeof(char) * letters) + 1);
 		if (buffer == NULL)
@@ -31,19 +31,12 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		buffer[(letters + 1)] = '\0';
 		write(STDOUT_FILENO, buffer, letters);
 		free(buffer);
-	}
+	}*/
+	buffer = malloc((sizeof(char) * letters));
+	r = read(file, buffer, letters);
+	r = write(STDOUT_FILENO, buffer, r);
+	free(buffer);	
 	close(file);
 	return (r);
-}
-
-/**
-  * _putchar - Used to write to the stdout.
-  * @c: char
-  * Return: int.
-  */
-
-int _putchar(char c)
-{
-	return (write(STDOUT_FILENO, &c, 1));
 }
 
