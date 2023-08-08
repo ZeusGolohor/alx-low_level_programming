@@ -10,22 +10,22 @@
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-	int file;
+	int fd;
 	ssize_t i = 0;
 	ssize_t r = 0;
 	char *buffer;
 
 	if (filename == NULL)
 		return (0);
-	file = open(filename, O_RDONLY);
-	if (file == -1)
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
 		return (0);
 	if (letters != 0)
 	{
-		buffer = malloc((sizeof(char) * letters) + 1);
+		buffer = malloc(sizeof(char) * letters);
 		if (buffer == NULL)
 			return (0);
-		STDIN_FILENO = file;
+		STDIN_FILENO = fd;
 		r = read(STDIN_FILENO, buffer, letters);
 		if (r == -1)
 			return (0);
