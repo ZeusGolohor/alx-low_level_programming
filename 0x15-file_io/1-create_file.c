@@ -9,7 +9,7 @@
  */
 int create_file(const char *filename, char *text_content)
 {
-	int fd, len = 0;
+	int fd;
 
 	if (filename == NULL)
 		return (-1);
@@ -17,10 +17,12 @@ int create_file(const char *filename, char *text_content)
 		fd = open(filename, O_WRONLY | O_TRUNC);
 	else
 		fd = open(filename, O_CREAT | O_WRONLY, 0600);
+	if (fd == -1)
+		return (-1);
 	if (text_content != NULL)
-		len = write(fd, text_content, strlen(text_content));
+		write(fd, text_content, strlen(text_content));
 	else
-		len = write(fd, "", 0);
+		write(fd, "", 0);
 	close(fd);
-	return (len);
+	return (1);
 }
