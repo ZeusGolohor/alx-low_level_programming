@@ -45,7 +45,7 @@ void _cp(const char *file_from, const char *file_to)
 		fd1 = open(file_from, O_RDONLY);
 	else
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file_from);
+		dprintf(2, "Error: Can't read from file %s\n", file_from);
 		exit(98);
 	}
 	buf = malloc(sizeof(char) * 1024);
@@ -58,13 +58,13 @@ void _cp(const char *file_from, const char *file_to)
 	cl = close(fd1);
 	if (cl == (-1))
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd1);
+		dprintf(2, "Error: Can't close fd %d\n", fd1);
 		exit(100);
 	}
 	cl = close(fd2);
 	if (cl == (-1))
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd2);
+		dprintf(2, "Error: Can't close fd %d\n", fd2);
 		exit(100);
 	}
 }
