@@ -9,7 +9,7 @@ int create_file(const char *filename, char *text_content)
 	if (access(filename, F_OK) == 0)
 		fd = open(filename, O_WRONLY);
 	else
-		fd = open(filename, O_CREAT | 0600);
+		fd = open(filename, O_CREAT, O_WRONLY, 0600);
 
 	close(fd);
 	return (0);	
