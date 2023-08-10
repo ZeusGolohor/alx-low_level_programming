@@ -52,17 +52,11 @@ void _copy(__attribute__((unused)) int ac, char *av[])
 
 void _copier(int fd1, int fd2)
 {
-	char buffer[1025];
-	int i;
+	char buffer[1024];
+	int size = 0;
 
-	buffer[1025] = '\0';
-	while (read(fd1, buffer, 1024) > 0)
+	while ((size = read(fd1, buffer, 1024)) > 0)
 	{
-		i = 0;
-		while (buffer[i] != '\0')
-		{
-			write(fd2, &buffer[i], 1);
-			++i;
-		}
+		write(fd2, buffer, size);
 	}
 }
