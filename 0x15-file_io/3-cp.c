@@ -2,8 +2,6 @@
 
 int main(int ac, char *av[])
 {
-	int i = 0;
-
 	if (ac != 3)
 	{
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
@@ -16,18 +14,16 @@ int main(int ac, char *av[])
 	return (0);
 }
 
-void _copy(int ac, char *av[])
+void _copy(__attribute__((unused)) int ac, char *av[])
 {
 	int fd1, fd2;
-	char *file1 = av[1], *file2 = av[2], *_file2 = av[2];
 
 	if ((access(av[1], F_OK | R_OK) == -1))
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
 		exit(98);
 	}
-	fd1 = open(file1, O_RDONLY);
-/**	fd2 = open(file2, O_CREAT | O_WRONLY);*/
+	fd1 = open(av[1], O_RDONLY);
 	if (access(av[2], F_OK) == -1)
 		fd2 = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
 	else
@@ -56,10 +52,17 @@ void _copy(int ac, char *av[])
 
 void _copier(int fd1, int fd2)
 {
-	char buffer[1024];
-	char c;
+	char buffer[1025];
+	int i;
 
-	printf("%d, %d\n", fd1, fd2);
-	read(fd1, &c, 1);
-	write(fd2, &c, 1); 
+	buffer[1025] = '\0';
+	while (read(fd1, buffer, 1024) > 0)
+	{
+		i = 0;
+		while (buffer[i] != '\0')
+		{
+			write(fd2, &buffer[i], 1);
+			++i;
+		}
+	}
 }
