@@ -80,16 +80,16 @@ void _copier(int fd1, int fd2, char *file1_name, char *file2_name)
 
 	while ((size = read(fd1, buffer, 1024)) > 0)
 	{
-		if (size == -1)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file1_name);
-			exit(98);
-		}
 		w = write(fd2, buffer, size);
 		if (w == -1)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file2_name);
 			exit(99);
 		}
+	}
+	if (size == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file1_name);
+		exit(98);
 	}
 }
