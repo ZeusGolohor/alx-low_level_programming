@@ -1,71 +1,65 @@
 #include "main.h"
 
-/**
-  * main - Entry point.
-  * @ac: int
-  * @av: char *
-  * Return: int.
-  */
-
-int main(int ac, char **av)
+int main(int ac, char *av[])
 {
+	int i = 0;
+
 	if (ac != 3)
 	{
-		dprintf(2, "Usage: %s file_from file_to", av[0]);
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-
-	_cp(av[1], av[2]);
+	else
+	{
+		_copy(ac, av);
+	}
 	return (0);
 }
 
-/**
-  * _cp - Used to copy the content of a file to another file.
-  * @file_from: char *
-  * @file_to: char *
-  * Return: void
-  */
-
-void _cp(const char *file_from, const char *file_to)
+void _copy(int ac, char *av[])
 {
-	int fd1, fd2, cl;
-	char *buf;
+	int fd1, fd2;
+	char *file1 = av[1], *file2 = av[2], *_file2 = av[2];
 
-	if ((access(file_to, F_OK)) == 0)
-		fd2 = open(file_to, O_WRONLY | O_TRUNC);
-	else
-		fd2 = open(file_to, O_CREAT | O_WRONLY, 0664);
-
-	if ((fd2 == (-1)) || (access(file_to, W_OK)) != 0)
+	if ((access(av[1], F_OK | R_OK) == -1))
 	{
-		dprintf(2, "Error: Can't write to %s\n", file_to);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
+		exit(98);
+	}
+	fd1 = open(file1, O_RDONLY);
+/**	fd2 = open(file2, O_CREAT | O_WRONLY);*/
+	if (access(av[2], F_OK) == -1)
+		fd2 = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	else
+		fd2 = open(av[2], O_WRONLY | O_TRUNC);
+	if (access(av[2], F_OK) == -1)
+		fd2 = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	else
+		fd2 = open(av[2], O_WRONLY | O_TRUNC);
+	if ((fd2 == -1) || (access(av[2], W_OK) == -1))
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
 		exit(99);
 	}
-	if ((access(file_from, F_OK | R_OK)) == 0)
-		fd1 = open(file_from, O_RDONLY);
-	else
+	_copier(fd1, fd2);
+	if (close(fd1) == -1)
 	{
-		dprintf(2, "Error: Can't read from file %s\n", file_from);
-		exit(98);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd1);
+		exit(100);	
 	}
-	buf = malloc(sizeof(char) * 1024);
-	if (buf == NULL)
-		exit(98);
-
-	read(fd1, buf, 1024);
-	write(fd2, buf, 1024);
-	free(buf);
-	cl = close(fd1);
-	if (cl == (-1))
+	if (close(fd2) == -1)
 	{
-		dprintf(2, "Error: Can't close fd %d\n", fd1);
-		exit(100);
-	}
-	cl = close(fd2);
-	if (cl == (-1))
-	{
-		dprintf(2, "Error: Can't close fd %d\n", fd2);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd2);
 		exit(100);
 	}
 }
 
+void _copier(int fd1, int fd2)
+{
+	char buffer[1024];
+	char c;
+
+	printf("%d, %d\n", fd1, fd2);
+	read(fd1, &c, 1);
+	write(fd2, &c, 1); 
+}
