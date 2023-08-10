@@ -1,5 +1,12 @@
 #include "main.h"
 
+/**
+ * main - program entry point.
+ * @ac: arguement count.
+ * @av: arguement vector.
+ *
+ * Return: int.
+ */
 int main(int ac, char *av[])
 {
 	if (ac != 3)
@@ -14,6 +21,13 @@ int main(int ac, char *av[])
 	return (0);
 }
 
+/**
+ * _copy - A function used to copy content from one file to another.
+ * @ac: arguement count.
+ * @av: arguement vector.
+ *
+ * Return: void.
+ */
 void _copy(__attribute__((unused)) int ac, char *av[])
 {
 	int fd1, fd2;
@@ -41,7 +55,7 @@ void _copy(__attribute__((unused)) int ac, char *av[])
 	if (close(fd1) == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd1);
-		exit(100);	
+		exit(100);
 	}
 	if (close(fd2) == -1)
 	{
@@ -50,6 +64,13 @@ void _copy(__attribute__((unused)) int ac, char *av[])
 	}
 }
 
+/**
+ * _copier - A function used to copy contents from one file to another.
+ * @fd1: file descriptor of the file to copy from.
+ * @fd2: file descriptor of the file to copy into.
+ *
+ * Return: void.
+ */
 void _copier(int fd1, int fd2)
 {
 	char buffer[1024];
