@@ -51,7 +51,7 @@ void _copy(__attribute__((unused)) int ac, char *av[])
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
 		exit(99);
 	}
-	_copier(fd1, fd2);
+	_copier(fd1, fd2, av[1], av[2]);
 	if (close(fd1) == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd1);
@@ -68,16 +68,28 @@ void _copy(__attribute__((unused)) int ac, char *av[])
  * _copier - A function used to copy contents from one file to another.
  * @fd1: file descriptor of the file to copy from.
  * @fd2: file descriptor of the file to copy into.
+ * @file1_name: name of @fd1.
+ * @file2_name: name of @fd2.
  *
  * Return: void.
  */
-void _copier(int fd1, int fd2)
+void _copier(int fd1, int fd2, char *file1_name, char *file2_name)
 {
 	char buffer[1024];
-	int size = 0;
+	int size = 0, w = 0;
 
 	while ((size = read(fd1, buffer, 1024)) > 0)
 	{
-		write(fd2, buffer, size);
+		if (size == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file1_name);
+			exit(98);
+		}
+		w = write(fd2, buffer, size);
+		if (w == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file2_name);
+			exit(99);
+		}
 	}
 }

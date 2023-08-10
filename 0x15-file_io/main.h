@@ -12,5 +12,5 @@ int create_file(const char *, char *);
 int append_text_to_file(const char *, char *);
 void _cp(const char *, const char *);
 void _copy(int, char **);
-void _copier(int, int);
+void _copier(int, int, char *, char *);
 #endif
