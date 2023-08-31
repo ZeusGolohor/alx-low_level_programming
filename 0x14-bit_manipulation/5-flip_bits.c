@@ -13,6 +13,11 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 	unsigned long int numin = 0, numxm = 0;
 	char *n_array;
 
+	if ((n == 0) && (m == 0))
+		return (0);
+
+	if (n > m)
+	{
 	while (numin <= n)
 	{
 		numin = numin + _pow_ulong_int(i, 2);
@@ -28,6 +33,25 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 		x++;
 	}
 	--x;
+	}
+	else
+	{
+        while (numin <= m)
+        {
+                numin = numin + _pow_ulong_int(i, 2);
+                i++;
+        }
+        --i;
+        n_array = malloc(sizeof(char) * (i + 1));
+        if (n_array == NULL)
+                return (-1);
+        while (numxm <= n)
+        {
+                numxm = numxm + _pow_ulong_int(x, 2);
+                x++;
+        }
+        --x;
+	}
 	numin = 0;
 	numxm = 0;
 	while (i >= 0)
