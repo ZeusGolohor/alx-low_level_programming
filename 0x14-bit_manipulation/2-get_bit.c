@@ -1,73 +1,70 @@
 #include "main.h"
 
 /**
- * get_bit - A function that returns the value of a bit at a given index.
- * @n: the number.
- * @index: the index of the bit to find.
- *
- * Return: int.
- */
+  * get_bit - Used to get a bit at a given index.
+  * @n: Decimal number to be converted to binary.
+  * @index: index of the binary to find.
+  * Return: Void.
+  */
 int get_bit(unsigned long int n, unsigned int index)
 {
-	unsigned long int total = 0;
+	unsigned long int num = 0;
 	long int i = 0;
 
-	if (n == 0)
-		return (0);
-	else if (n == 1)
+	if (_pow_ulong_int(index, 2) == 0)
+		return (-1);
+
+	if (n < 5000)
 	{
-		return (1);
+		while (num <= n)
+		{
+			num = num + _pow_ulong_int(i, 2);
+			i++;
+		}
 	}
 	else
 	{
-		while (total < n)
+		while (i <= index)
 		{
-			total = total + _pow_lint(2, i);
-			++i;
+			num = num + _pow_ulong_int(i, 2);
+			i++;
+		}
+	}
+	i--;
+	num = 0;
+	while (i >= 0)
+	{
+		if ((num + _pow_ulong_int(i, 2)) <= n)
+		{
+			num = num + _pow_ulong_int(i, 2);
+			if (i == index)
+				return (1);
 		}
 		--i;
-		total = 0;
-		while (i >= 0)
-		{
-			if ((total + _pow_lint(2, i)) <= n)
-			{
-				total = total + _pow_lint(2, i);
-				if (index == i)
-				{
-					return (1);
-				}
-			}
-			else
-			{
-				if (index == i)
-					return (0);
-			}
- 			--i;
-		}
 	}
-	if (_pow_lint(2, index) < n)
-		return (-1);
-	else
-		return (0);
+	return (0);
 }
 
 /**
- * _pow_lint - A function to get the result of a number raised to the power of
- * another number.
- * @number: the number to be multiplied by @power times.
- * @power: the number of times to multiply a number by itself.
- *
- * Return: unsigned long int.
- */
-unsigned long int _pow_lint(unsigned long int number, long int power)
+  * _pow_ulong_int - Used to get the result of a number
+  * multiplied by another number muiltiple times.
+  * @times: number of times a number should be multiplied.
+  * @num: The number to be multiplied.
+  * Return: unsigned long int.
+  */
+unsigned long int _pow_ulong_int(long int times, unsigned long int num)
 {
-	unsigned long int pow = 1;
+	unsigned long int b;
+	long int i;
 
-	while (power > 0)
+	b = 1;
+	i = 0;
+	while (i < times)
 	{
-		pow = number * pow;
-		--power;
+		b = b * num;
+		i++;
 	}
-	return (pow);
+	return (b);
 }
+
 
