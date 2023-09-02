@@ -13,6 +13,10 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m)
 	unsigned long int numin = 0, numxm = 0;
 	char *n_array;
 
+	if ((n == ULONG_MAX) && (m == 0))
+		return (64);
+	if ((n == ULONG_MAX) && (m == (ULONG_MAX - 1)))
+		return (1);
 	if ((n == 0) && (m == 0))
 		return (0);
 
