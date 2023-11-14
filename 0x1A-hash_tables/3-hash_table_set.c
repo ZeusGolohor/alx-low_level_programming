@@ -1,111 +1,62 @@
 #include "hash_tables.h"
 
 /**
-  * hash_table_set - Used to add or update a value on the hash table.
-  * @ht: The hash table.
-  * @key: The key to the value.
-  * @value: value.
-  * Return: int.
-  */
+ * hash_table_set - A  function that adds an element to the hash table.
+ * @ht: a pointer to the hash table.
+ * @key: the data to hash to get the index of @value.
+ * @value: the data to be stored in the hash table.
+ *
+ * Return: int.
+ */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index;
-	hash_node_t *newnode, *temp;
+	hash_node_t *newnode, *head;	
 
-	if (ht == NULL)
+	if ((key == NULL) || (ht == NULL) || (value == NULL))
 		return (0);
-	if (strlen(key) == 0)
+	index = key_index((const unsigned char *) key, ht->size);
+	newnode = create_newnode(key, value);
+	if (newnode == NULL)
 		return (0);
-	index = key_index((const unsigned char *)key, ht->size);
 	if (ht->array[index] == NULL)
-	{
-		newnode = create_new_node(key, value);
-		if (newnode == NULL)
-			return (0);
-		strcpy(newnode->key, key);
-		strcpy(newnode->value, value);
-		newnode->next = NULL;
 		ht->array[index] = newnode;
-	}
-	else if (ht->size == 1)
-	{
-		temp = ht->array[index];
-		hash_table_loop_n_set(ht, key, value, temp, index);
-		return (1);
-	}
 	else
 	{
-		temp = ht->array[index];
-		hash_table_loop_n_set(ht, key, value, temp, index);
+		head = ht->array[index];
+		while(head != NULL)
+		{
+			if (head == NULL)
+				break;
+			if (head->next == NULL)
+			{
+				head->next = newnode;
+				break;
+			}
+			head = head->next;
+		}
 	}
 	return (1);
 }
 
 /**
-  * create_new_node - Used to creare new node to
-  * be inserted into the hash table.
-  * @key: const char *
-  * @value: const char *
-  * Return: hash_node_t *.
-  */
-hash_node_t *create_new_node(const char *key, const char *value)
+ * create_newnode - A function used to create a new node for the hash table.
+ * @key: the data to hash to get the index of @value.
+ * @value: the data to be stored in the hash table.
+ *
+ * Return: hash_node_t *.
+ */
+hash_node_t *create_newnode(const char *key, const char *value)
 {
 	hash_node_t *newnode;
 
-	newnode = malloc(sizeof(hash_node_t));
+	newnode = malloc(sizeof(hash_node_t *));
 	if (newnode == NULL)
 		return (NULL);
-	newnode->key = malloc(strlen(key) + 1);
-	if (newnode->key == NULL)
-		return (NULL);
-	newnode->value = malloc(strlen(value) + 1);
-	if (newnode->value == NULL)
+	newnode->key = strdup(key);
+	newnode->value = strdup(value);
+	newnode->next = NULL;
+	if ((key == NULL) || (value == NULL))
 		return (NULL);
 	return (newnode);
-}
-
-/**
-  * hash_table_loop_n_set - Used to loop through an hashtable and set
-  * it values based on some conditions.
-  * @ht: hash table.
-  * @key: hash key.
-  * @value: hash value.
-  * @temp: temporaty index storage.
-  * @index: hash table key index.
-  * Return: void.
-  */
-int hash_table_loop_n_set(hash_table_t *ht, const char *key, const char *value,
-hash_node_t *temp, unsigned long int index)
-{
-	hash_node_t *newnode;
-
-	while (temp->next != NULL)
-	{
-		if (strcmp(temp->key, key) == 0)
-		{
-			temp->value = realloc(temp->value, strlen(value) + 1);
-			strcpy(temp->value, value);
-			break;
-		}
-		temp = temp->next;
-	}
-	if (temp->next == NULL)
-	{
-		if (strcmp(temp->key, key) == 0)
-		{
-			temp->value = realloc(temp->value, strlen(value) + 1);
-			strcpy(temp->value, value);
-		}
-		else
-		{
-			newnode = create_new_node(key, value);
-			if (newnode == NULL)
-				return (0);
-			strcpy(newnode->key, key);
-			strcpy(newnode->value, value);
-			newnode->next = ht->array[index];
-			ht->array[index] = newnode;
-		}
-	}
-	return (1);
 }
