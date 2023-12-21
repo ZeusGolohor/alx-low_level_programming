@@ -7,4 +7,5 @@ all : new
 new : $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
 
+# To make sure tgat only update source files are recomplied to object files
 $(OBJ) : m.h
