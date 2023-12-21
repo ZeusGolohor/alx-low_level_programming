@@ -3,22 +3,29 @@ SRC = main.c school.c
 OBJ = $(SRC:.c=.o)
 NAME = school
 FILE = update
-RM = $(NAME) $(OBJ) *~
-all : new
-# To make sure only source file been changed are updated
-new : $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
-# to force recomplilation
-re : $(FILE)
-	$(MAKE) new
-$(FILE) : $(SRC) m.h
-	touch $@
-# To make sure tgat only update source files are recomplied to object files
-$(OBJ) : m.h
-.PHONY : clean oclean fclean
-clean :
-	rm -f *~ $(NAME)
-oclean:
-	rm -f $(OBJ)
+RM = rm -f
 
-fclean: clean oclean
+all: new
+
+new: $(OBJ)
+	$(CC) $(OBJ) -o $(NAME)
+
+re: $(FILE)
+	$(MAKE) new
+
+$(FILE): $(SRC) m.h
+	touch $@
+
+$(OBJ): m.h
+
+.PHONY: all clean oclean fclean re
+
+clean:
+	$(RM) *~ $(NAME) $(OBJ)
+
+oclean:
+	$(RM) $(OBJ)
+
+fclean: clean
+
+
