@@ -3,7 +3,7 @@ SRC = main.c school.c
 OBJ = $(SRC:.c=.o)
 NAME = school
 FILE = update
-RM = $(NAME) *.o *~
+RM = $(NAME) $(OBJ) *~
 all : new
 # To make sure only source file been changed are updated
 new : $(OBJ)
@@ -19,6 +19,6 @@ $(OBJ) : m.h
 clean :
 	rm -f *~ $(NAME)
 oclean:
-	rm -f *.o
+	rm -f $(OBJ)
 
 fclean: clean oclean
