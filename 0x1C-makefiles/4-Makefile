@@ -10,8 +10,7 @@ all: new
 new: $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-re: $(FILE)
-	$(MAKE) new
+re: new
 
 $(FILE): $(SRC) m.h
 	touch $@
